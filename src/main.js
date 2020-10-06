@@ -12,11 +12,13 @@ Vue.prototype.axios = axios
 Vue.config.productionTip = false
 
 import Home from './components/Home.vue'
-import Project from './components/Project/Projects.vue'
+import Projects from './components/Project/Projects.vue'
+import Project from './components/Project/Project.vue'
 
 const routes = [
   { path: '/', component: Home },
-  { path: '/projects', component: Project },
+  { path: '/projects', component: Projects },
+  { path: '/project/:id', component: Project },
 ]
 const router = new VueRouter({routes})
 
