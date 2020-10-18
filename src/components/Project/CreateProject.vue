@@ -27,7 +27,6 @@
   </div>
 </template>
 
-
 <script>
 export default {
   data() {
@@ -40,9 +39,13 @@ export default {
   },
   methods: {
     async handleSubmit() {
-      const body = this.project;
-      const res = await this.axios.post("/project", body);
-      console.log(res);
+      try {
+        const body = this.project;
+        await this.axios.post("/project", body);
+        this.$router.push({ name: "projects" });
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };
