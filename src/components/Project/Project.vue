@@ -5,13 +5,13 @@
         </div>
         <div class="row pt-3 justify-content-center">
             <a class="px-3 py-1 mx-1" href="#">
-                <img style="width:40px" class="img-fluid" src="../../assets/trello.png" alt="">
+                <img style="width:40px" class="img-fluid" src="../../assets/trello.svg" alt="">
             </a>                         
             <a class="px-3 py-1 mx-1" href="#">
-                <img style="width:40px" class="img-fluid" src="../../assets/git.png" alt="">
+                <img style="width:40px" class="img-fluid" src="../../assets/git.svg" alt="">
             </a>
             <a class="px-3 py-1 mx-1" href="#">
-                <img style="width:40px" class="img-fluid" src="../../assets/slack.png" alt="">
+                <img style="width:40px" class="img-fluid" src="../../assets/slack.svg" alt="">
             </a>
         </div>
         <div class="row">
