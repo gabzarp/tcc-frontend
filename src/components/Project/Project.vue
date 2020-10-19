@@ -1,9 +1,14 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class=" pt-3 justify-content-center text-center mb-5 col-12">
+      <div class=" pt-3 justify-content-center text-center mb-5 col-10">
         <h2>{{ project.name }}</h2>
         <h6 >{{ "Dono" }}</h6>
+      </div>
+      <div class="col-2">
+        <router-link :to="{path: `/project/${project._id}/settings`}" class="w-100" v-if="true">
+          <img src="../../assets/settings.svg" alt="Configurações do projeto" class="m-5 img-fluid w-25">
+        </router-link>
       </div>
     </div>
     <div class="row">
@@ -27,7 +32,7 @@
       <div class="col-10">
         <h4>Membros:</h4>
         <div class="row">
-          <memberCard v-for="(index,member) in project.members" :key="index" :member-data="member"></memberCard>
+          <memberCard v-for="(index,member) in project.members" :key="index" :member-data="member" :is-scrum-master="true" :project-data="project"/>
         </div>
       </div>
     </div>

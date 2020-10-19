@@ -15,12 +15,14 @@ import Home from "./components/Home.vue";
 import Project from "./components/Project/Project.vue";
 import Projects from './components/Project/Projects.vue'
 import CreateProject from "./components/Project/CreateProject.vue";
+import ProjectSettings from './components/Project/ProjectSettings'
 
 const routes = [
   { path: "/", component: Home },
   { path: "/projects", component: Projects, name: "projects" },
   { path: "/projects/create", component: CreateProject },
   { path: "/project/:id", component: Project },
+  {path:"/project/:id/settings", component: ProjectSettings}
 ];
 const router = new VueRouter({ routes });
 
