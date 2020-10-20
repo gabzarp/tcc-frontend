@@ -32,6 +32,10 @@
             :to="{ path: '/project/' + project._id }"
             >Ir ao projeto</router-link
           >
+          <a 
+            class=" btn-primary px-4 py-1 mx-1 rounded border border-dark"
+            href="#"
+            >Entrar</a>
         </div>
       </div>
     </div>
