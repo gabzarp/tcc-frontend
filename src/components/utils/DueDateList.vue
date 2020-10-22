@@ -13,14 +13,14 @@
                   </button>
                 </h5>
               </div>
-              <div :id="'c' + index" class="collapse" :class="setShowClass(index)" :aria-labelledby="'h' + index" data-parent="#accordion">
-                <div class="form-group" :id="'c' + index">
+              <div :id="'c' + index" class="collapse" :class="setShowClass(index)" :aria-labelledby="'c' + index">
+                <div class="form-group">
                   <label for="nome" class="sr-only">Nome</label>
-                  <input type="text" v-model="todo.name" class="form-control" placeholder="nome" id="nome">
+                  <input type="text" v-model="todo.name" class="form-control" placeholder="nome">
                 </div>
                 <div class="form-group">
                   <label for="date" class="sr-only">Data</label>
-                  <input type="date" id="date" class="form-control" v-model="todo.date">
+                  <input type="date" class="form-control" v-model="todo.date">
                 </div>
                 <div class="form-group">
                   <label for="description" class="sr-only">Descrição</label>

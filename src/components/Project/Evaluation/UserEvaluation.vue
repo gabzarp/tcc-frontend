@@ -116,12 +116,12 @@
         },
     },
     async mounted() {
-        const projectRes = await this.axios.get(`project/${this.$route.params.id}`);
+        const projectRes = await this.axios.get(`/project/${this.$route.params.id}`);
         this.project = projectRes.data;
-        const memberRes = await this.axios.get(`member/${this.$route.params.member}`);
+        const memberRes = await this.axios.get(`/member/${this.$route.params.member}`);
         this.member = memberRes.data;
 
-        const evaluations = await this.axios.post(`evaluation-by-member-and-project`, {project: this.project._id, member: this.member._id});
+        const evaluations = await this.axios.post(`/evaluation-by-member-and-project`, {project: this.project._id, member: this.member._id});
         if(evaluations.data){
             evaluations.data.forEach(evaluation => {
                 this[evaluation.type.name] = evaluation

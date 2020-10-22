@@ -5,9 +5,9 @@
       <img src="../../assets/avatar.svg" class="img-fluid rounded-circle">
     </div>
     <div class="col-8">
-      <h5>{{"memberData.name"}}</h5>
-      <p class="m-0">{{"memberData.position"}}</p>
-      <router-link v-if="isScrumMaster" :to="{path: `/project/${projectData._id}/user-evaluation/${memberData._id}` }"> 
+      <h5>{{memberData.user.name}}</h5>
+      <p class="m-0">{{memberData.position}}</p>
+      <router-link v-if="isScrumMaster" :to="{path: `/project/${projectData._id}/member-evaluation/${memberData._id}` }"> 
         Avaliar 
       </router-link>
         <div v-if="isSolicitation">
@@ -22,6 +22,6 @@
 
 <script>
 export default {
-  props: ['memberData', 'isScrumMaster', 'projectData', 'isSolicitation']
+  props: ['isScrumMaster', 'projectData', 'memberData', 'isSolicitation']
 }
 </script>

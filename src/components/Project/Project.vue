@@ -17,14 +17,8 @@
         <p>{{project.description}}</p>
       </div>
       <div class="pt-3 col-2 px-5">
-      <a class="m-3 d-block px-2" href="#">
+      <a class="m-3 d-block px-2" href="https://trello.com/b/gTkVjqiV/projeto-teste" target="_blank">
         <img class="img-fluid" src="../../assets/trello.svg"/>
-      </a>
-      <a class="m-3 d-block px-2" href="#">
-        <img class="img-fluid" src="../../assets/git.svg"/>
-      </a>
-      <a class="m-3 d-block px-2" href="#">
-        <img class="img-fluid" src="../../assets/slack.svg"/>
       </a>
     </div>
     </div>
@@ -32,7 +26,7 @@
       <div class="col-10">
         <h4>Membros:</h4>
         <div class="row">
-          <memberCard v-for="(index,member) in project.members" :key="index" :member-data="member" :is-scrum-master="true" :project-data="project"/>
+          <memberCard v-for="(member, index) in project.members" :key="index" :member-data="member" :is-scrum-master="true" :project-data="project"/>
         </div>
       </div>
     </div>

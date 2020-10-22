@@ -8,9 +8,9 @@
         :key="index"
       >
         <h4 class="text-left">{{ project.name }}</h4>
-        <h6 class="text-left">{{ "Dono" }}</h6>
+        <!-- <h6 class="text-left">{{ project.owner.name }}</h6> -->
         <div class="d-flex pb-2">
-          <a
+          <!-- <a
             class=" btn-primary px-4 py-1 mx-1 rounded border border-dark"
             href="#"
             >Git</a
@@ -19,10 +19,10 @@
             class=" btn-primary px-4 py-1 mx-1 rounded border border-dark"
             href="#"
             >Slack</a
-          >
+          > -->
           <a
             class=" btn-primary px-4 py-1 mx-1 rounded border border-dark"
-            href="#"
+            href="https://trello.com/b/gTkVjqiV/projeto-teste" target="_blank"
             >Trello</a
           >
         </div>

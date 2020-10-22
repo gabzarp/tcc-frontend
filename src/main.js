@@ -16,6 +16,7 @@ import Project from "./components/Project/Project.vue";
 import Projects from './components/Project/Projects.vue'
 import CreateProject from "./components/Project/CreateProject.vue";
 import UserEvaluation from "./components/Project/Evaluation/UserEvaluation.vue";
+import Ranking from "./components/Project/Evaluation/Ranking.vue";
 import ProjectSettings from './components/Project/ProjectSettings'
 
 const routes = [
@@ -24,7 +25,8 @@ const routes = [
   { path: "/projects/create", component: CreateProject },
   { path: "/project/:id", component: Project },
   { path: "/project/:id/member-evaluation/:member", component: UserEvaluation },
-  { path: "/project/:id/settings", component: ProjectSettings}
+  { path: "/project/:id/settings", component: ProjectSettings},
+  { path: "/ranking", component: Ranking}
 ];
 const router = new VueRouter({ routes });
 
