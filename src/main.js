@@ -17,7 +17,11 @@ import Projects from './components/Project/Projects.vue'
 import CreateProject from "./components/Project/CreateProject.vue";
 import UserEvaluation from "./components/Project/Evaluation/UserEvaluation.vue";
 import Ranking from "./components/Project/Evaluation/Ranking.vue";
-import ProjectSettings from './components/Project/ProjectSettings'
+import ProjectSettings from './components/Project/ProjectSettings.vue'
+
+import Login from './components/User/Login.vue'
+import CompanySignup from './components/User/CompanySignup.vue'
+import MemberSignup from './components/User/MemberSignup.vue'
 
 const routes = [
   { path: "/", component: Home },
@@ -26,7 +30,10 @@ const routes = [
   { path: "/project/:id", component: Project },
   { path: "/project/:id/member-evaluation/:member", component: UserEvaluation },
   { path: "/project/:id/settings", component: ProjectSettings},
-  { path: "/ranking", component: Ranking}
+  { path: "/ranking", component: Ranking},
+  { path: "/login", component: Login},
+  { path: "/signup-company", component: CompanySignup},
+  { path: "/signup-member", component: MemberSignup}
 ];
 const router = new VueRouter({ routes });
 
