@@ -1,5 +1,11 @@
 <template>
   <div class="container">
+    <div class="alert alert-success alert-dismissible fade show mt-2" role="alert" v-if="showMessage">
+      Uma solicitação foi enviada para entrar no projeto.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" @click="showMessage = false">
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
     <div class="row pt-3">
       <div v-if="isLoading" class="m-auto"><img src="../../assets/loading.svg" alt="loading" ></div>
       <div
@@ -7,6 +13,7 @@
         v-for="(project, index) of projects"
         :key="index"
       >
+      
         <h4 class="text-left">{{ project.name }}</h4>
         <!-- <h6 class="text-left">{{ project.owner.name }}</h6> -->
         <div class="d-flex pb-2">
@@ -34,7 +41,7 @@
           >
           <a 
             class=" btn-primary px-4 py-1 mx-1 rounded border border-dark"
-            href="#"
+            href="#" @click="handleEnterProjectClick"
             >Entrar</a>
         </div>
       </div>
@@ -47,6 +54,7 @@ export default {
     return {
       isLoading: true,
       projects: {},
+      showMessage: false
     };
   },
   async mounted() {
@@ -54,5 +62,11 @@ export default {
     this.projects = projectRes.data;
     this.isLoading = false;
   },
+  methods: {
+    handleEnterProjectClick(){
+
+      this.showMessage = true;
+    }
+  }
 };
 </script>

@@ -18,6 +18,9 @@
           <li class="nav-item active border-right">
             <router-link class="nav-link px-4" to="/ranking">Ranking</router-link>
           </li>
+          <li class="nav-item active border-right">
+            <router-link class="nav-link px-4" to="/projects/create">Criar Projeto </router-link>
+          </li>
         </ul>
       </div>
     </nav>
