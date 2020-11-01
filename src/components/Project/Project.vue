@@ -39,10 +39,14 @@
     <div class="row">
       <div class="col-10">
         <h4>Entregas:</h4>
-        <div v-for="deadLine in deadLines" :key="deadLine._id">
-          <h6>{{deadLine.name}}</h6>
-          <p>{{deadLine.description}}</p>
-          <p>{{deadLine.deadLine}}</p>
+        <div class="row">
+          <div class="col-4 p-2 border border-muted rounded-lg p-2 m-2" v-for="deadLine in deadLines" :key="deadLine._id">
+            <div class="col-8">
+              <h5>{{deadLine.name}}</h5>
+              <p class="m-0">{{deadLine.description}}</p>
+              <p class="font-weight-bold">{{new Date(deadLine.deadLine).toLocaleDateString()}}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
