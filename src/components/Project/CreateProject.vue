@@ -1,5 +1,6 @@
 <template>
-  <div class="container">
+  <div class="container py-4">
+    <h2>Criar projeto</h2>
     <form @submit.prevent="handleSubmit">
       <div class="form-group">
         <label for="projectName">Nome:</label>
@@ -21,7 +22,7 @@
         ></textarea>
       </div>
       <div class="form-group">
-        <button type="submit" class="btn-primary btn">Submit</button>
+        <button type="submit" class="btn-primary btn">Criar</button>
       </div>
     </form>
   </div>
