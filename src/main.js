@@ -24,7 +24,7 @@ import CompanySignup from './components/User/CompanySignup.vue'
 import MemberSignup from './components/User/MemberSignup.vue'
 
 const routes = [
-  { path: "/", component: Home },
+  { path: "/", component: Home, name: "home" },
   { path: "/projects", component: Projects, name: "projects" },
   { path: "/projects/create", component: CreateProject },
   { path: "/project/:id", component: Project },

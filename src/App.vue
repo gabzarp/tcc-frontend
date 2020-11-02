@@ -9,22 +9,25 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto justify-content-between align-items-center">
-          <li class="nav-item active border-right">
+          <li v-if="user_type" class="nav-item active border-right">
             <router-link class="nav-link px-4" to="/projects">Seus projetos</router-link>
           </li>
-          <li class="nav-item active border-right">
+          <li v-if="user_type" class="nav-item active border-right">
             <router-link class="nav-link px-4" to="/projects">Perfil</router-link>
           </li>
-          <li class="nav-item active border-right">
+          <li v-if="user_type" class="nav-item active border-right">
             <router-link class="nav-link px-4" to="/ranking">Ranking</router-link>
           </li>
-          <li class="nav-item active border-right">
+          <li v-if="user_type" class="nav-item active border-right">
+            <a href="#" class="nav-link px-4" v-on:click="logout()">Logout</a>
+          </li>
+          <li v-if="!user_type" class="nav-item active border-right">
             <router-link class="nav-link px-4" to="/login">Login</router-link>
           </li>
-          <li class="nav-item active border-right">
+          <li v-if="!user_type" class="nav-item active border-right">
             <router-link class="nav-link px-4" to="/signup-company">Quero ser cooperado</router-link>
           </li>
-          <li class="nav-item active border-right">
+          <li v-if="!user_type" class="nav-item active border-right">
             <router-link class="nav-link px-4" to="/signup-member">Quero realizar meu projeto</router-link>
           </li>
         </ul>
@@ -43,13 +46,16 @@
     name: 'App',
     data (){
       return{
-        user: ''
+        user_type: typeof this.$session.get('userType') !== 'undefined' ? this.$session.get('userType') : false
       }
     },
-    beforeCreate: function () {
-      if (this.$session.exists()) {
-        
-        this.$router.push('/')
+    updated () {
+      this.user_type = typeof this.$session.get('userType') !== 'undefined' ? this.$session.get('userType') : false
+    },
+    methods: {
+      logout(){
+        this.$session.destroy();
+        this.$router.push({ name: "home" });
       }
     }
   }

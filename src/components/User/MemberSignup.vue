@@ -46,7 +46,7 @@
                     var login = await this.axios.post("/signup", this.user);
                     if(login.data){
                         this.$session.start();
-                        this.$session.set('userId', login.data.id);
+                        this.$session.set('userId', login.data._id);
                         this.$session.set('userName', login.data.name);
                         this.$session.set('userEmail', login.data.email);
                         this.$session.set('userType', login.data.user_type);
