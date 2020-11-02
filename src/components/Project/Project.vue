@@ -17,8 +17,14 @@
         <p>{{project.description}}</p>
       </div>
       <div class="pt-3 col-2 px-5">
-      <a class="m-3 d-block px-2" href="https://trello.com/b/gTkVjqiV/projeto-teste" target="_blank">
+      <a class="m-3 d-block px-2" :href="project.trello" target="_blank">
         <img class="img-fluid" src="../../assets/trello.svg"/>
+      </a>
+      <a class="m-3 d-block px-2" href="https://trello.com/b/gTkVjqiV/projeto-teste" target="_blank">
+        <img class="img-fluid" src="../../assets/git.svg"/>
+      </a>
+      <a class="m-3 d-block px-2" href="https://trello.com/b/gTkVjqiV/projeto-teste" target="_blank">
+        <img class="img-fluid" src="../../assets/slack.svg"/>
       </a>
     </div>
     </div>
@@ -27,6 +33,20 @@
         <h4>Membros:</h4>
         <div class="row">
           <memberCard v-for="(member, index) in project.members" :key="index" :member-data="member" :is-scrum-master="true" :project-data="project"/>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-10">
+        <h4>Entregas:</h4>
+        <div class="row">
+          <div class="col-4 p-2 border border-muted rounded-lg p-2 m-2" v-for="deadLine in deadLines" :key="deadLine._id">
+            <div class="col-8">
+              <h5>{{deadLine.name}}</h5>
+              <p class="m-0">{{deadLine.description}}</p>
+              <p class="font-weight-bold">{{new Date(deadLine.deadLine).toLocaleDateString()}}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -41,15 +61,18 @@
 
     data() {
       return {
-        project: {}
+        project: {},
+        deadLines: []
       };
     },
     components:{
       memberCard
     },
     async mounted() {
+      const deadLineRes = await this.axios.get(`dead-lines/${this.$route.params.id}`)
       const projectRes = await this.axios.get(`project/${this.$route.params.id}`);
       this.project = projectRes.data;
+      this.deadLines = deadLineRes.data;
     },
   };
 </script>
