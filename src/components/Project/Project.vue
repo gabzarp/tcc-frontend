@@ -2,6 +2,7 @@
   <div class="container">
     <div class="row">
       <div class=" pt-3 justify-content-center text-center mb-5 col-10">
+        <h2 v-if="project.isFinished" class="text-danger">Este projeto está finalizado</h2>
         <h2>{{ project.name }}</h2>
         <h6 >{{ "Dono" }}</h6>
       </div>
@@ -39,7 +40,7 @@
     <div class="row">
       <div class="col-10">
         <h4>Entregas:</h4>
-        <div class="row">
+        <div class="row" v-if="deadLines.length > 0">
           <div class="col-4 p-2 border border-muted rounded-lg p-2 m-2" v-for="deadLine in deadLines" :key="deadLine._id">
             <div class="col-8">
               <h5>{{deadLine.name}}</h5>
@@ -47,6 +48,9 @@
               <p class="font-weight-bold">{{new Date(deadLine.deadLine).toLocaleDateString()}}</p>
             </div>
           </div>
+        </div>
+        <div class="row" v-else>
+          <p>Não há entregas neste projeto.</p>
         </div>
       </div>
     </div>
