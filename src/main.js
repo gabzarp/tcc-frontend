@@ -27,13 +27,14 @@ import MemberSignup from './components/User/MemberSignup.vue'
 const routes = [
   { path: "/projects", component: Projects, name: "projects" },
   { path: "/perfil", component: Perfil, name: "perfil" },
-  { path: "/", component: MyProjects, name: "my-projects" },
+  { path: "/my-projects", component: MyProjects, name: "my-projects" },
   { path: "/projects/create", component: CreateProject },
   { path: "/project/:id", component: Project },
   { path: "/project/:id/member-evaluation/:member", component: UserEvaluation },
   { path: "/project/:id/settings", component: ProjectSettings},
   { path: "/ranking", component: Ranking},
   { path: "/login", component: Login},
+  { path: "/", component: Login},
   { path: "/signup-company", component: CompanySignup},
   { path: "/signup-member", component: MemberSignup}
 ];
