@@ -1,5 +1,7 @@
 <template>
-  <h1>HOME WIP</h1>
+  <div class="row justify-content-center py-5">
+    <img class="img-fluid" src="../assets/logo.png" alt="">
+  </div>
 </template>
 
 <script>
