@@ -17,20 +17,10 @@
         <h4 class="text-left">{{ project.name }}</h4>
         <!-- <h6 class="text-left">{{ project.owner.name }}</h6> -->
         <div class="d-flex pb-2">
-          <!-- <a
-            class=" btn-primary px-4 py-1 mx-1 rounded border border-dark"
-            href="#"
-            >Git</a
-          >
-          <a
-            class=" btn-primary px-4 py-1 mx-1 rounded border border-dark"
-            href="#"
-            >Slack</a
-          > -->
-          <a
-            class=" btn-primary px-4 py-1 mx-1 rounded border border-dark"
-            href="https://trello.com/b/gTkVjqiV/projeto-teste" target="_blank"
-            >Trello</a
+          <a v-for="(external, index) of project.externalSources" :key="index"
+            class=" btn-primary px-4 py-1 mx-1 rounded border border-dark" :href="external.link"
+             target="_blank"
+            >{{external.name}}</a
           >
         </div>
         <div class="d-flex pb-2">
@@ -56,8 +46,11 @@ export default {
   },
   async mounted() {
     const user = await this.axios.get("/user/"+this.userId);
-    console.log(user)
-    this.projects = user.data.projects;
+    this.projects = user.data.projects.filter(project=>{
+      if(project.isFinished == false){
+        return project
+      }
+    })
     this.isLoading = false;
   },
   methods: {

@@ -45,7 +45,7 @@
                         this.$session.set('userEmail', login.data.user.email);
                         this.$session.set('userType', login.data.user.user_type);
                         this.$session.set('role', login.data.position);
-                        this.$router.push({ name: "projects" });
+                        this.$router.push({ name: "my-projects" });
                     }
                     else{
                         console.log(login)

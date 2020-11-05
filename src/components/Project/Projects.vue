@@ -49,7 +49,7 @@ export default {
   async mounted() {
     const projectRes = await this.axios.get("/projects");
     this.projects = projectRes.data.filter(project =>{
-      if ((this.role == 'Scrum master' && project.taken == false) || (this.role != 'Scrum master')) {
+      if (((this.role == 'Scrum master' && project.taken == false) || (this.role != 'Scrum master')) && project.isFinished == false ) {
         return project;
       }
     })
@@ -61,7 +61,7 @@ export default {
       await this.axios.post("/invite", {projectId: projectId, userId: this.$session.get('expecificId')});
     },
     async handleGetProjectClick(projectId){
-      await this.axios.post("/associate", {projectId: projectId, userId: this.$session.get('userId')});
+      await this.axios.post("/project-start", {projectId: projectId, userId: this.$session.get('userId')});
     },
   }
 };

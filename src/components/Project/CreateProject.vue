@@ -46,7 +46,7 @@ export default {
         var project = await this.axios.post("/project", body);
         console.log(project)
         await this.axios.patch("/user", {_id: this.$session.get('userId') , projects: [project.data._id]});
-        this.$router.push({ name: "projects" });
+        this.$router.push({ name: "my-projects" });
       } catch (error) {
         console.log(error);
       }

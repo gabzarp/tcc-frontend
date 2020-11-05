@@ -11,7 +11,6 @@ Vue.prototype.axios = api;
 
 Vue.config.productionTip = false;
 
-import Home from "./components/Home.vue";
 import Project from "./components/Project/Project.vue";
 import Projects from './components/Project/Projects.vue'
 import MyProjects from './components/Project/MyProjects.vue'
@@ -21,13 +20,14 @@ import Ranking from "./components/Project/Evaluation/Ranking.vue";
 import ProjectSettings from './components/Project/ProjectSettings.vue'
 
 import Login from './components/User/Login.vue'
+import Perfil from './components/User/Perfil.vue'
 import CompanySignup from './components/User/CompanySignup.vue'
 import MemberSignup from './components/User/MemberSignup.vue'
 
 const routes = [
-  { path: "/", component: Home, name: "home" },
   { path: "/projects", component: Projects, name: "projects" },
-  { path: "/my-projects", component: MyProjects, name: "my-projects" },
+  { path: "/perfil", component: Perfil, name: "perfil" },
+  { path: "/", component: MyProjects, name: "my-projects" },
   { path: "/projects/create", component: CreateProject },
   { path: "/project/:id", component: Project },
   { path: "/project/:id/member-evaluation/:member", component: UserEvaluation },

@@ -19,7 +19,7 @@
             <router-link class="nav-link px-4" to="/projects">Buscar novos projetos</router-link>
           </li>
           <li v-if="user_type" class="nav-item active border-right">
-            <router-link class="nav-link px-4" to="/projects">Perfil</router-link>
+            <router-link class="nav-link px-4" to="/perfil">Perfil</router-link>
           </li>
           <li v-if="user_type" class="nav-item active border-right">
             <router-link class="nav-link px-4" to="/ranking">Ranking</router-link>

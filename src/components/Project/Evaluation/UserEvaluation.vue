@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h1>Avaliações de {{member.user.name}}</h1>
+        <h1>Avaliações de {{member ? member.user.name : 'usuário'}}</h1>
         <form @submit.prevent="handleSubmit">
             <div class="col-6">
                 <div class="d-flex flex-column">
@@ -98,9 +98,9 @@
       return {
         project: {_id: '0'},
         member: { _id: '0'},
-        dueDate: {type: "5f8cc48101fca84044fccbe9", score: 0},
-        technicalKnowledge: {type: "5f8ce43e01fca84044fccbeb", score: 0},
-        communication: {type:"5f8ce42b01fca84044fccbea", score: 0},
+        dueDate: {type: "5f8cc48101fca84044fccbe9", score: 0, project: this.$route.params.id, member: this.$route.params.member},
+        technicalKnowledge: {type: "5f8ce43e01fca84044fccbeb", score: 0, project: this.$route.params.id, member: this.$route.params.member},
+        communication: {type:"5f8ce42b01fca84044fccbea", score: 0, project: this.$route.params.id, member: this.$route.params.member},
       };
     },
     methods: {
@@ -113,7 +113,7 @@
                 await this.axios.post("/add-evaluation", {memberId: this.$route.params.member, evaluationId: dueDate.data._id });
                 await this.axios.post("/add-evaluation", {memberId: this.$route.params.member, evaluationId: technicalKnowledge.data._id });
                 await this.axios.post("/add-evaluation", {memberId: this.$route.params.member, evaluationId: communication.data._id});
-                this.$router.push({ name: "projects" });
+                this.$router.push({ name: "my-projects" });
             } catch (error) {
                 console.log(error);
             }
@@ -126,6 +126,7 @@
         this.member = memberRes.data;
 
         const evaluations = await this.axios.post(`/evaluation-by-member-and-project`, {project: this.project._id, member: this.member._id});
+        console.log(evaluations)
         if(evaluations.data !== [] && typeof evaluations.data !== 'undefined'){
             evaluations.data.forEach(evaluation => {
                 this[evaluation.type.name] = evaluation

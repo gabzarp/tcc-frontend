@@ -7,11 +7,11 @@
     <div class="col-8">
       <h5>{{memberData.user.name}}</h5>
       <p class="m-0">{{memberData.position}}</p>
-      <router-link v-if="isScrumMaster" :to="{path: `/project/${projectData._id}/member-evaluation/${memberData._id}` }"> 
+      <router-link v-if="isScrumMaster && memberData.position != 'Scrum master'" :to="{path: `/project/${projectData._id}/member-evaluation/${memberData._id}` }"> 
         Avaliar 
       </router-link>
         <div v-if="isSolicitation" class="d-flex">
-          <a href="#" class="text-primary text-decoration-none mr-2" v-on:click="accept(memberData._id)" >Aceitar</a>
+          <a href="#" class="text-primary text-decoration-none mr-2" v-on:click="accept(memberData.user._id)" >Aceitar</a>
           <a href="#" class="text-danger text-decoration-none">Ignorar</a>
         </div>
 

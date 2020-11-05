@@ -4,19 +4,19 @@
       <div class="col-4">
         <h4>Comunicação</h4>
         <ul>
-          <li :key="index" v-for="(communication, index) of communications">{{(index + 1)}}: {{communication.name}}</li>
+          <li :key="index" v-for="(communication, index) of communications">{{(index + 1)}}: {{communication.name}}. Nota: {{communication.communication}}</li>
         </ul>
       </div>
       <div class="col-4">
         <h4>Conhecimento técnico</h4>
         <ul>
-          <li :key="index" v-for="(technicalKnowledge, index) of technicalKnowledges">{{(index + 1)}}: {{technicalKnowledge.name}}</li>
+          <li :key="index" v-for="(technicalKnowledge, index) of technicalKnowledges">{{(index + 1)}}: {{technicalKnowledge.name}}. Nota: {{technicalKnowledge.technicalKnowledge}}</li>
         </ul>
       </div>
       <div class="col-4">
         <h4>Entrega no prazo</h4>
         <ul>
-          <li :key="index" v-for="(dueDate, index) of dueDates">{{(index + 1)}}: {{dueDate.name}}</li>
+          <li :key="index" v-for="(dueDate, index) of dueDates">{{(index + 1)}}: {{dueDate.name}}. Nota: {{dueDate.dueDate}}</li>
         </ul>
       </div>
     </div>
@@ -27,7 +27,7 @@
   export default {
     data() {
       return {
-        members: {},
+        members: [],
         communications : [],
         technicalKnowledges: [],
         dueDates: []
@@ -69,19 +69,19 @@
           technicalKnowledge: technicalKnowledge
         }
       })
-      this.members = this.members.filter(member=>{
-        
+      var members = this.members.filter(member=>{
         return !isNaN(member.dueDate)
       })
-      this.dueDates = this.members.sort((a,b)=>{
+      this.dueDates =  [...members].sort((a,b)=>{
         return b.dueDate - a.dueDate
       })
-      this.communications = this.members.sort((a,b)=>{
+      this.communications = [...members].sort((a,b)=>{
         return b.communication - a.communication
       })
-      this.technicalKnowledges = this.members.sort((a,b)=>{
+      this.technicalKnowledges = [...members].sort((a,b)=>{
         return b.technicalKnowledge - a.technicalKnowledge
       })
+      console.log(this.members)
     }
   };
 </script>
