@@ -37,11 +37,14 @@
                 try {
                     var login = await this.axios.post("/login", this.user);
                     if(login.data){
+                        console.log(login.data)
                         this.$session.start();
-                        this.$session.set('userId', login.data._id);
-                        this.$session.set('userName', login.data.name);
-                        this.$session.set('userEmail', login.data.email);
-                        this.$session.set('userType', login.data.user_type);
+                        this.$session.set('userId', login.data.user._id);
+                        this.$session.set('expecificId', login.data._id);
+                        this.$session.set('userName', login.data.user.name);
+                        this.$session.set('userEmail', login.data.user.email);
+                        this.$session.set('userType', login.data.user.user_type);
+                        this.$session.set('role', login.data.position);
                         this.$router.push({ name: "projects" });
                     }
                     else{

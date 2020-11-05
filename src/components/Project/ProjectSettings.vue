@@ -1,79 +1,81 @@
 <template>
   <div class="container mt-2">
-    <h4>Solicitações:</h4>
+    <div class="row">
+      <div class="col-12">
+        <label for="">Git</label><br>
+        <input type="text" class="form-control mb-2" v-model="git.link">
+        <button class="btn btn-primary" v-on:click="saveGit()">Salvar</button>
+      </div>
+      <div class="col-12">
+        <label for="">Slack</label><br>
+        <input type="text" class="form-control mb-2" v-model="slack.link">
+        <button class="btn btn-primary" v-on:click="saveSlack()">Salvar</button>
+      </div>
+    </div>
     <div class="row mt-2">
+      <div class="col-12">
+        <h4>Solicitações:</h4>
+      </div>
       <div class="col-10">
         <div class="row">
-          <!-- <MemberCard isSolicitation="true"></MemberCard> -->
+          <MemberCard v-for="(invite, index) of project.invites"
+          :key="index" isSolicitation="true" :memberData="invite" projectData="project"></MemberCard>
         </div>
       </div>
     </div>
     <div class="row">
-      <h4>Entregas:</h4>
-    </div>
-    <div class="row">
+      <div class="col-12">
+        <h4>Entregas:</h4>
+      </div>
       <div class="col-12">
         <DueDateList/>
       </div>
     </div>
-    <div id="accordion">
-      <div class="card">
-        <div class="card-header" id="headingOne">
-          <h5 class="mb-0">
-            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              Collapsible Group Item #1
-            </button>
-          </h5>
-        </div>
-    
-        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-          <div class="card-body">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header" id="headingTwo">
-          <h5 class="mb-0">
-            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              Collapsible Group Item #2
-            </button>
-          </h5>
-        </div>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-          <div class="card-body">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header" id="headingThree">
-          <h5 class="mb-0">
-            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-              Collapsible Group Item #3
-            </button>
-          </h5>
-        </div>
-        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-          <div class="card-body">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
-  
 </template>
 
 <script>
 
-// import MemberCard from '../utils/MemberCard'
+import MemberCard from '../utils/MemberCard'
 import DueDateList from '../utils/DueDateList'
 
 export default {
+  data(){
+    return {
+      project: {},
+      slack: {
+        name: 'slack',
+        link: ''
+      },
+      git:{
+        name: 'git',
+        link: ''
+      }
+    };
+  },
   components: {
-    // MemberCard,
+    MemberCard,
     DueDateList
+  },
+  async mounted() {
+    const projectRes = await this.axios.get(`project/${this.$route.params.id}`);
+    this.project = projectRes.data;
+    this.project.externalSources.forEach(external => {
+      if (external.name == 'slack') {
+        this.slack.link = external.link
+      }
+      else if (external.name == 'git'){
+        this.git.link = external.link
+      }
+    });
+  },
+  methods: {
+      async saveSlack(){
+        await this.axios.patch("/external-source", this.slack);
+      },
+      async saveGit(){
+        await this.axios.patch("/external-source", this.git);
+      },
   }
 }
 </script>

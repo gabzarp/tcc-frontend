@@ -36,7 +36,7 @@
         data() {
             return {
                 user: {
-                    user_type: typeof this.$session.get('userType') !== 'undefined' ? this.$session.get('userType') : false
+                    user_type: 'company'
                 },
             };
         },

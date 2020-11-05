@@ -106,9 +106,13 @@
     methods: {
         async handleSubmit() {
             try {
-                await this.axios.patch("/evaluation", this.dueDate);
-                await this.axios.patch("/evaluation", this.technicalKnowledge);
-                await this.axios.patch("/evaluation", this.communication);
+                var dueDate = await this.axios.patch("/evaluation", this.dueDate);
+                var technicalKnowledge = await this.axios.patch("/evaluation", this.technicalKnowledge);
+                var communication = await this.axios.patch("/evaluation", this.communication);
+                console.log(dueDate )
+                await this.axios.post("/add-evaluation", {memberId: this.$route.params.member, evaluationId: dueDate.data._id });
+                await this.axios.post("/add-evaluation", {memberId: this.$route.params.member, evaluationId: technicalKnowledge.data._id });
+                await this.axios.post("/add-evaluation", {memberId: this.$route.params.member, evaluationId: communication.data._id});
                 this.$router.push({ name: "projects" });
             } catch (error) {
                 console.log(error);
@@ -122,12 +126,13 @@
         this.member = memberRes.data;
 
         const evaluations = await this.axios.post(`/evaluation-by-member-and-project`, {project: this.project._id, member: this.member._id});
-        if(evaluations.data){
+        if(evaluations.data !== [] && typeof evaluations.data !== 'undefined'){
             evaluations.data.forEach(evaluation => {
                 this[evaluation.type.name] = evaluation
             });
         }
         else{
+            console.log(this.dueDate)
             Object.assign(this.dueDate, {project: this.project._id, member: this.member._id})
             Object.assign(this.technicalKnowledge, {project: this.project._id, member: this.member._id})
             Object.assign(this.communication, {project: this.project._id, member: this.member._id})

@@ -10,9 +10,9 @@
       <router-link v-if="isScrumMaster" :to="{path: `/project/${projectData._id}/member-evaluation/${memberData._id}` }"> 
         Avaliar 
       </router-link>
-        <div v-if="isSolicitation">
-          <a class="text-primary text-decoration-none mr-2">Aceitar</a>
-          <a class="text-danger text-decoration-none">Ignorar</a>
+        <div v-if="isSolicitation" class="d-flex">
+          <a href="#" class="text-primary text-decoration-none mr-2" v-on:click="accept(memberData._id)" >Aceitar</a>
+          <a href="#" class="text-danger text-decoration-none">Ignorar</a>
         </div>
 
     </div>
@@ -22,6 +22,15 @@
 
 <script>
 export default {
-  props: ['isScrumMaster', 'projectData', 'memberData', 'isSolicitation']
+  props: ['isScrumMaster', 'projectData', 'memberData', 'isSolicitation'],
+  methods: {
+      async accept(memberId) {
+          try {
+              await this.axios.post("/associate", {projectId: this.$route.params.id, userId: memberId});
+          } catch (error) {
+              console.log(error);
+          }
+      },
+  }
 }
 </script>

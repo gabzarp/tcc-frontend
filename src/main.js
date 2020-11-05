@@ -14,6 +14,7 @@ Vue.config.productionTip = false;
 import Home from "./components/Home.vue";
 import Project from "./components/Project/Project.vue";
 import Projects from './components/Project/Projects.vue'
+import MyProjects from './components/Project/MyProjects.vue'
 import CreateProject from "./components/Project/CreateProject.vue";
 import UserEvaluation from "./components/Project/Evaluation/UserEvaluation.vue";
 import Ranking from "./components/Project/Evaluation/Ranking.vue";
@@ -26,6 +27,7 @@ import MemberSignup from './components/User/MemberSignup.vue'
 const routes = [
   { path: "/", component: Home, name: "home" },
   { path: "/projects", component: Projects, name: "projects" },
+  { path: "/my-projects", component: MyProjects, name: "my-projects" },
   { path: "/projects/create", component: CreateProject },
   { path: "/project/:id", component: Project },
   { path: "/project/:id/member-evaluation/:member", component: UserEvaluation },

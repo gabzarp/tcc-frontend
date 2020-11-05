@@ -35,6 +35,7 @@ export default {
       project: {
         name: "",
         description: "",
+        owner: this.$session.get('userId')
       },
     };
   },
@@ -42,7 +43,9 @@ export default {
     async handleSubmit() {
       try {
         const body = this.project;
-        await this.axios.post("/project", body);
+        var project = await this.axios.post("/project", body);
+        console.log(project)
+        await this.axios.patch("/user", {_id: this.$session.get('userId') , projects: [project.data._id]});
         this.$router.push({ name: "projects" });
       } catch (error) {
         console.log(error);

@@ -13,23 +13,32 @@
         v-for="(project, index) of projects"
         :key="index"
       >
-
+      
         <h4 class="text-left">{{ project.name }}</h4>
-        <h6 class="text-left">Empresa: {{ project.owner.name }}</h6>
+        <!-- <h6 class="text-left">{{ project.owner.name }}</h6> -->
+        <div class="d-flex pb-2">
+          <!-- <a
+            class=" btn-primary px-4 py-1 mx-1 rounded border border-dark"
+            href="#"
+            >Git</a
+          >
+          <a
+            class=" btn-primary px-4 py-1 mx-1 rounded border border-dark"
+            href="#"
+            >Slack</a
+          > -->
+          <a
+            class=" btn-primary px-4 py-1 mx-1 rounded border border-dark"
+            href="https://trello.com/b/gTkVjqiV/projeto-teste" target="_blank"
+            >Trello</a
+          >
+        </div>
         <div class="d-flex pb-2">
           <router-link
             class=" btn-primary px-4 py-1 mx-1 rounded border border-dark"
             :to="{ path: '/project/' + project._id }"
             >Ir ao projeto</router-link
           >
-          <a 
-            class=" btn-primary px-4 py-1 mx-1 rounded border border-dark"
-            href="#" @click="handleEnterProjectClick(project._id)" v-if="role != 'Scrum master'"
-            >Entrar</a>
-          <a 
-            class=" btn-primary px-4 py-1 mx-1 rounded border border-dark"
-            href="#" @click="handleGetProjectClick(project._id)"  v-if="role == 'Scrum master'"
-            >Pegar projeto</a>
         </div>
       </div>
     </div>
@@ -42,27 +51,20 @@ export default {
       isLoading: true,
       projects: {},
       showMessage: false,
-      user_type: this.$session.get('userType'),
-      role: this.$session.get('role')
+      userId: this.$session.get('userId')
     };
   },
   async mounted() {
-    const projectRes = await this.axios.get("/projects");
-    this.projects = projectRes.data.filter(project =>{
-      if ((this.role == 'Scrum master' && project.taken == false) || (this.role != 'Scrum master')) {
-        return project;
-      }
-    })
-    console.log(this.projects)
+    const user = await this.axios.get("/user/"+this.userId);
+    console.log(user)
+    this.projects = user.data.projects;
     this.isLoading = false;
   },
   methods: {
-    async handleEnterProjectClick(projectId){
-      await this.axios.post("/invite", {projectId: projectId, userId: this.$session.get('expecificId')});
-    },
-    async handleGetProjectClick(projectId){
-      await this.axios.post("/associate", {projectId: projectId, userId: this.$session.get('userId')});
-    },
+    handleEnterProjectClick(){
+
+      this.showMessage = true;
+    }
   }
 };
 </script>

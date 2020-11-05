@@ -16,6 +16,14 @@
                         <input class="form-control" type="password" placeholder="Password" v-model="user.password">
                     </div>
                     <div class="form-group">    
+                        <select class="form-control" type="password" placeholder="Password" v-model="user.position">
+                            <option value="" selected>Selecione seu cargo</option>
+                            <option value="Programador">Programador</option>
+                            <option value="Designer">Designer</option>
+                            <option value="Scrum master">Scrum master</option>
+                        </select>
+                    </div>
+                    <div class="form-group">    
                         <input class="form-control" type="text" placeholder="CPF" v-model="user.cpf">
                     </div>
                     <div class="form-group">
@@ -36,6 +44,7 @@
         data() {
             return {
                 user: {
+                    position: '',
                     user_type: 'member'
                 },
             };

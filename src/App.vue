@@ -3,14 +3,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <router-link class="navbar-brand" to="/">Cooperativa</router-link>
+      <router-link class="navbar-brand img-fluid" to="/"><img class="img-fluid" src="./assets/logo.png" alt=""></router-link>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto justify-content-between align-items-center">
           <li v-if="user_type" class="nav-item active border-right">
-            <router-link class="nav-link px-4" to="/projects">Seus projetos</router-link>
+            <router-link class="nav-link px-4" to="/my-projects">Seus projetos</router-link>
+          </li>
+          <li v-if="user_type == 'company'" class="nav-item active border-right">
+            <router-link class="nav-link px-4" to="/projects/create">Criar projeto</router-link>
+          </li>
+          <li v-if="user_type == 'member'" class="nav-item active border-right">
+            <router-link class="nav-link px-4" to="/projects">Buscar novos projetos</router-link>
           </li>
           <li v-if="user_type" class="nav-item active border-right">
             <router-link class="nav-link px-4" to="/projects">Perfil</router-link>
@@ -25,10 +31,10 @@
             <router-link class="nav-link px-4" to="/login">Login</router-link>
           </li>
           <li v-if="!user_type" class="nav-item active border-right">
-            <router-link class="nav-link px-4" to="/signup-company">Quero ser cooperado</router-link>
+            <router-link class="nav-link px-4" to="/signup-company">Quero realizar meu projeto</router-link>
           </li>
           <li v-if="!user_type" class="nav-item active border-right">
-            <router-link class="nav-link px-4" to="/signup-member">Quero realizar meu projeto</router-link>
+            <router-link class="nav-link px-4" to="/signup-member">Quero ser cooperado</router-link>
           </li>
         </ul>
       </div>

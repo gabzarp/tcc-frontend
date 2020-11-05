@@ -5,8 +5,8 @@
         <h2>{{ project.name }}</h2>
         <h6 >{{ "Dono" }}</h6>
       </div>
-      <div class="col-2">
-        <router-link :to="{path: `/project/${project._id}/settings`}" class="w-100" v-if="true">
+      <div class="col-2" v-if="role == 'Scrum master'">
+        <router-link :to="{path: `/project/${project._id}/settings`}" class="w-100">
           <img src="../../assets/settings.svg" alt="Configurações do projeto" class="m-5 img-fluid w-25">
         </router-link>
       </div>
@@ -62,7 +62,9 @@
     data() {
       return {
         project: {},
-        deadLines: []
+        deadLines: [],
+        role: this.$session.get('role'),
+
       };
     },
     components:{
