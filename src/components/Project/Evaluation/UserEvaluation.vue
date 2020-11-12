@@ -1,8 +1,8 @@
 <template>
     <div class="container">
         <h1>Avaliações de {{member ? member.user.name : 'usuário'}}</h1>
-        <form @submit.prevent="handleSubmit">
-            <div class="col-6">
+        <form @submit.prevent="handleSubmit" class="bg-gray py-3 text-light">
+            <div class="col-12">
                 <div class="d-flex flex-column">
                     <h3>Entregas no prazo:</h3>
                     <div class="form-group">
@@ -29,7 +29,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-12">
                 <div class="d-flex flex-column">
                     <h3>Comunicação:</h3>
                     <div class="form-group">
@@ -56,7 +56,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-12">
                 <div class="d-flex flex-column">
                     <h3>Conhecimento técnico:</h3>
                     <div class="form-group">
@@ -84,8 +84,8 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <button type="submit" class="btn-primary btn">Submit</button>
+            <div class="form-group col-12">
+                <button type="submit" class="btn-primary btn">Avaliar</button>
             </div>
         </form>
     </div>
@@ -113,7 +113,7 @@
                 await this.axios.post("/add-evaluation", {memberId: this.$route.params.member, evaluationId: dueDate.data._id });
                 await this.axios.post("/add-evaluation", {memberId: this.$route.params.member, evaluationId: technicalKnowledge.data._id });
                 await this.axios.post("/add-evaluation", {memberId: this.$route.params.member, evaluationId: communication.data._id});
-                this.$router.push({ name: "my-projects" });
+                this.$router.back();
             } catch (error) {
                 console.log(error);
             }

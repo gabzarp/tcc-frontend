@@ -2,7 +2,7 @@
   <div id="app">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
       <router-link class="navbar-brand img-fluid" to="/"><img class="img-fluid" src="./assets/logo.png" alt=""></router-link>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -74,5 +74,31 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  height: 100vh;
+  background-image: url('/images/background.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.bg-gray{
+  background-color: #7e7e7e !important;
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15)!important;
+}
+.btn-primary{
+  background-color: #e78200 !important;
+  border-color: #343a40!important;
+  color: #000 !important;
+
+}
+.btn-primary:hover {
+    color: #fff !important;
+    background-color: #a96104 !important;
+    border-color: #a96104 !important;
+}
+.text-primary {
+    color: #e78200 !important;
+}
+ul{
+  list-style-type: none;
 }
 </style>

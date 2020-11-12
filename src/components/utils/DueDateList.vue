@@ -1,15 +1,14 @@
 <template>
-  <div>
     <ol class="list-group my-2">
-      <form class="p-2">
-       <button type="submit"  @click.prevent="handleFormSubmit" class="btn btn-primary m-2 btn-lg">Adicionar</button>
-       <button type="button" class="btn btn-warning m-2 btn-lg" @click="handleSave">Salvar alterações</button>
+      <form class="pY-2">
+       <button type="submit"  @click.prevent="handleFormSubmit" class="btn btn-primary mb-2 mr-2 btn-lg">Adicionar</button>
+       <button type="button" class="btn btn-primary ml-2 mb-2 btn-lg" @click="handleSave">Salvar alterações</button>
         <div v-if="todos.length !== 0" class="" role="tablist">
-          <li v-for="(todo,index) in todos" :key="index" class="list-group-item">
+          <li v-for="(todo,index) in todos" :key="index" class="list-group-item bg-gray">
             <div class="card">
               <div class="card-header">
                 <h5 class="mb-0">
-                  {{todo.name || 'nome'}}
+                  {{todo.name || 'Nome'}}
                 </h5>
               </div>
               <div> 
@@ -34,7 +33,6 @@
         </div>
       </form>
     </ol>
-  </div>
 </template>
 
 <script>

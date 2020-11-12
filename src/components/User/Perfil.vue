@@ -1,13 +1,13 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-7 mt-5 bg-info">
+            <div class="col-7 mt-5 bg-gray">
                 <div class=" pt-3 justify-content-center text-center">
-                    <h2>Perfil</h2>
+                    <h2  class="text-light">Perfil</h2>
                 </div>
                 <form @submit.prevent="handleSubmit">
                     <div class="form-group">
-                        <input class="form-control" type="text" placeholder="Name" v-model="member.user.name">
+                        <input class="form-control" type="text" placeholder="Nome" v-model="member.user.name">
                     </div>
                     <div class="form-group">
                         <input class="form-control" type="email" placeholder="E-mail" v-model="member.user.email">

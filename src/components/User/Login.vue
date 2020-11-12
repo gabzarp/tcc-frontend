@@ -1,20 +1,20 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-7 mt-5 bg-info">
+            <div class="col-7 mt-5 bg-gray">
                 <div class=" pt-3 justify-content-center text-center">
-                    <h2>Login</h2>
+                    <h2 class="text-white">Login</h2>
                 </div>
                 <form @submit.prevent="handleSubmit">
                     <div class="form-group">
                         <input class="form-control" type="email" placeholder="E-mail" v-model="user.email">
                     </div>
                     <div class="form-group">    
-                        <input class="form-control" type="password" placeholder="Password" v-model="user.password">
+                        <input class="form-control" type="password" placeholder="Senha" v-model="user.password">
                     </div>
                     <div class="form-group">
                         <button class="btn btn-primary ">
-                            Login
+                            Entrar
                         </button>
                     </div>
                 </form> 

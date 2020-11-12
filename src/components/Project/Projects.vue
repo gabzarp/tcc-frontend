@@ -9,13 +9,13 @@
     <div class="row pt-3">
       <div v-if="isLoading" class="m-auto"><img src="../../assets/loading.svg" alt="loading" ></div>
       <div
-        class="col-3 bg-info p-2 m-2"
+        class="col-4 bg-gray p-2 m-2"
         v-for="(project, index) of projects"
         :key="index"
       >
 
-        <h4 class="text-left">{{ project.name }}</h4>
-        <h6 class="text-left">Empresa: {{ project.owner.name }}</h6>
+        <h4 class="text-left text-light">{{ project.name }}</h4>
+        <h6 class="text-left text-light">Empresa: {{ project.owner.name }}</h6>
         <div class="d-flex pb-2">
           <router-link
             class=" btn-primary px-4 py-1 mx-1 rounded border border-dark"
@@ -53,7 +53,6 @@ export default {
         return project;
       }
     })
-    console.log(this.projects)
     this.isLoading = false;
   },
   methods: {

@@ -1,23 +1,31 @@
 <template>
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-4">
-        <h4>Comunicação</h4>
-        <ul>
-          <li :key="index" v-for="(communication, index) of communications">{{(index + 1)}}: {{communication.name}}. Nota: {{communication.communication}}</li>
-        </ul>
+      <div v-if="isLoading" class="m-auto"><img src="../../../assets/loading.svg" alt="loading" ></div>
+
+      <div v-if="!isLoading" class="col-4 mt-3 text-light">
+        <div class="py-3 px-3 bg-gray">  
+          <h4>Comunicação</h4>
+          <ul class="pl-0">
+            <li :key="index" class="border-top py-2" v-for="(communication, index) of communications"><b>{{(index + 1)}}:</b> {{communication.name}}. Nota: {{communication.communication}}</li>
+          </ul>
+        </div>
       </div>
-      <div class="col-4">
-        <h4>Conhecimento técnico</h4>
-        <ul>
-          <li :key="index" v-for="(technicalKnowledge, index) of technicalKnowledges">{{(index + 1)}}: {{technicalKnowledge.name}}. Nota: {{technicalKnowledge.technicalKnowledge}}</li>
-        </ul>
+      <div v-if="!isLoading" class="col-4 mt-3 text-light">
+        <div class="py-3 px-3 bg-gray">  
+          <h4>Conhecimento técnico</h4>
+          <ul class="pl-0">
+            <li :key="index" class="border-top py-2" v-for="(technicalKnowledge, index) of technicalKnowledges"><b>{{(index + 1)}}:</b> {{technicalKnowledge.name}}. Nota: {{technicalKnowledge.technicalKnowledge}}</li>
+          </ul>
+        </div>
       </div>
-      <div class="col-4">
-        <h4>Entrega no prazo</h4>
-        <ul>
-          <li :key="index" v-for="(dueDate, index) of dueDates">{{(index + 1)}}: {{dueDate.name}}. Nota: {{dueDate.dueDate}}</li>
-        </ul>
+      <div v-if="!isLoading" class="col-4 mt-3 text-light">
+        <div class="py-3 px-3 bg-gray">  
+          <h4>Entrega no prazo</h4>
+          <ul class="pl-0">
+            <li :key="index" class="border-top py-2" v-for="(dueDate, index) of dueDates"><b>{{(index + 1)}}:</b> {{dueDate.name}}. Nota: {{dueDate.dueDate}}</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>  
@@ -30,7 +38,9 @@
         members: [],
         communications : [],
         technicalKnowledges: [],
-        dueDates: []
+        dueDates: [],
+        isLoading: true,
+
       };
     },
     async mounted() {
@@ -81,6 +91,7 @@
       this.technicalKnowledges = [...members].sort((a,b)=>{
         return b.technicalKnowledge - a.technicalKnowledge
       })
+      this.isLoading = false
       console.log(this.members)
     }
   };

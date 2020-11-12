@@ -1,6 +1,9 @@
 <template>
   <div class="container">
     <div class="row">
+      <div v-if="isLoading" class="m-auto"><img src="../../assets/loading.svg" alt="loading" ></div>
+    </div>
+    <div v-if="!isLoading" class="row">
       <div class=" pt-3 justify-content-center text-center mb-5 col-10">
         <h2 v-if="project.isFinished" class="text-danger">Este projeto está finalizado</h2>
         <h2>{{ project.name }}</h2>
@@ -12,27 +15,28 @@
         </router-link>
       </div>
     </div>
-    <div class="row">
-      <div class="col-10">
+    <div v-if="!isLoading" class="row">
+      <div class="col-10 bg-gray py-2 text-light">
         <h4>Descrição:</h4>
         <p>{{project.description}}</p>
       </div>
-      <div class="pt-3 col-2 px-5">
+      <div class="pt-0 col-2 px-5">
+        <h4>Links externos:</h4>
       <a v-for="(external, index) of project.externalSources" :key="index" class="m-3 d-block px-2" :href="external.link" target="_blank">
         <img class="img-fluid" :src="require(`@/assets/${external.name}.svg`)"/>
       </a>
     </div>
     </div>
-    <div class="row">
-      <div class="col-10">
+    <div v-if="!isLoading" class="row pt-3">
+      <div class="col-10 bg-gray py-2 text-light">
         <h4>Membros:</h4>
         <div class="row">
           <memberCard v-for="(member, index) in project.members" :key="index" :member-data="member" :is-scrum-master="role == 'Scrum master'" :project-data="project"/>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-10">
+    <div v-if="!isLoading" class="row pt-3">
+      <div class="col-10 bg-gray py-2 text-light">
         <h4>Entregas:</h4>
         <div class="row" v-if="deadLines.length > 0">
           <div class="col-4 p-2 border border-muted rounded-lg p-2 m-2" v-for="deadLine in deadLines" :key="deadLine._id">
@@ -43,9 +47,7 @@
             </div>
           </div>
         </div>
-        <div class="row" v-else>
-          <p>Não há entregas neste projeto.</p>
-        </div>
+          <span v-else>Não há entregas neste projeto.</span>
       </div>
     </div>
   </div>  
@@ -62,6 +64,7 @@
         project: {},
         deadLines: [],
         role: this.$session.get('role'),
+        isLoading: true
 
       };
     },
@@ -73,6 +76,7 @@
       const projectRes = await this.axios.get(`project/${this.$route.params.id}`);
       this.project = projectRes.data;
       this.deadLines = deadLineRes.data;
+      this.isLoading = false
     },
   };
 </script>

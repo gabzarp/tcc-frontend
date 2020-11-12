@@ -1,22 +1,22 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-7 mt-5 bg-info">
+            <div class="col-7 mt-5 bg-gray">
                 <div class=" pt-3 justify-content-center text-center">
-                    <h2>Signup member</h2>
+                    <h2 class="text-white">Cadastro de colaborador</h2>
                 </div>
                 <form @submit.prevent="handleSubmit">
                     <div class="form-group">
-                        <input class="form-control" type="text" placeholder="Name" v-model="user.name">
+                        <input class="form-control" type="text" placeholder="Nome" v-model="user.name">
                     </div>
                     <div class="form-group">
                         <input class="form-control" type="email" placeholder="E-mail" v-model="user.email">
                     </div>
                     <div class="form-group">    
-                        <input class="form-control" type="password" placeholder="Password" v-model="user.password">
+                        <input class="form-control" type="password" placeholder="Senha" v-model="user.password">
                     </div>
                     <div class="form-group">    
-                        <select class="form-control" type="password" placeholder="Password" v-model="user.position">
+                        <select class="form-control" type="password" placeholder="" v-model="user.position">
                             <option value="" selected>Selecione seu cargo</option>
                             <option value="Programador">Programador</option>
                             <option value="Designer">Designer</option>
@@ -28,7 +28,7 @@
                     </div>
                     <div class="form-group">
                         <button class="btn btn-primary ">
-                            Signup
+                            Cadastrar
                         </button>
                     </div>
                 </form> 

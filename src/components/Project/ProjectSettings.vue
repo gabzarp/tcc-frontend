@@ -1,39 +1,37 @@
 <template>
-  <div class="container mt-2">
-    <div class="row">
+  <div class="container mt-4">
+    <div class="row bg-gray">
       <div class="col-12">
         <button class="btn btn-lg btn-primary my-2" @click="finishProject()">
           Finalizar projeto
         </button>
       </div>
-      <div class="col-12">
-        <label for="">Git</label><br>
+      <div class="col-12 py-2">
+        <label class="text-light" for="">Git</label><br>
         <input type="text" class="form-control mb-2" v-model="git.link">
         <button class="btn btn-primary" @click="saveGit()">Salvar</button>
       </div>
-      <div class="col-12">
-        <label for="">Slack</label><br>
+      <div class="col-12 py-2">
+        <label class="text-light" for="">Slack</label><br>
         <input type="text" class="form-control mb-2" v-model="slack.link">
         <button class="btn btn-primary" @click="saveSlack()">Salvar</button>
       </div>
     </div>
-    <div class="row mt-2">
+    <div class="row bg-gray mt-2">
       <div class="col-12">
-        <h4>Solicitações:</h4>
+        <h4 class="text-light py-2 mb-0">Solicitações:</h4>
       </div>
-      <div class="col-12">
-        <div class="row" v-if="project.invites.length > 0">
+      <div class="col-12 pb-2">
+        <div v-if="project.invites.length > 0">
           <MemberCard v-for="(invite, index) of project.invites"
           :key="index" isSolicitation="true" :memberData="invite" projectData="project"></MemberCard>
         </div>
-        <div class="row" v-else>
-          <p>Não existem solicitações para este projeto</p>
-        </div>
+        <span v-else>Não existem solicitações para este projeto</span>
       </div>
     </div>
-    <div class="row">
+    <div class="row py-3 bg-gray mt-2 mb-3">
       <div class="col-12">
-        <h4>Entregas:</h4>
+        <h4 class="text-light">Entregas:</h4>
       </div>
       <div class="col-12">
         <DueDateList/>
@@ -80,9 +78,11 @@ export default {
   methods: {
       async saveSlack(){
         await this.axios.patch("/external-source", this.slack);
+        this.$router.back();
       },
       async saveGit(){
         await this.axios.patch("/external-source", this.git);
+        this.$router.back();
       },
       async finishProject(){
         this.project.isFinished = true
