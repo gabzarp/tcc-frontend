@@ -3,21 +3,30 @@
         <div class="row justify-content-center">
             <div class="col-7 mt-5 bg-gray">
                 <div class=" pt-3 justify-content-center text-center">
-                    <h2 class="text-white">Login</h2>
+                    <h2 class="text-light">Login</h2>
                 </div>
-                <form @submit.prevent="handleSubmit">
-                    <div class="form-group">
-                        <input class="form-control" type="email" placeholder="E-mail" v-model="user.email">
-                    </div>
-                    <div class="form-group">    
-                        <input class="form-control" type="password" placeholder="Senha" v-model="user.password">
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary ">
-                            Entrar
-                        </button>
-                    </div>
-                </form> 
+                <ValidationObserver v-slot="{ handleSubmit }">
+                    <form @submit.prevent="handleSubmit(onSubmit)">
+                        <div class="form-group">
+                            <validation-provider rules="required" v-slot="{ errors }">
+                                <input class="form-control" type="email" placeholder="E-mail" v-model="user.email">
+                                <span class="mt-1 text-danger">{{ errors[0] }}</span>
+                            </validation-provider>
+                        </div>
+                        <div class="form-group">  
+                            <validation-provider rules="required" v-slot="{ errors }">
+                                <input class="form-control" type="password" placeholder="Password" v-model="user.password">
+                                <span class="mt-1 text-danger">{{ errors[0] }}</span>
+                            </validation-provider>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary ">
+                                Login
+                            </button>
+                        </div>
+                        <p class="text-danger">{{ loginError }}</p>
+                    </form> 
+                </ValidationObserver>
             </div>
         </div>
     </div>  
@@ -25,15 +34,22 @@
   
   
   <script>
-  
+    import { extend } from 'vee-validate';
+    import { required } from 'vee-validate/dist/rules';
+
+    extend('required', {
+        ...required,
+        message: 'Campo obrigatório'
+    });
     export default {
         data() {
             return {
                 user: {},
+                loginError: ''
             };
         },
         methods: {
-            async handleSubmit() {
+            async onSubmit() {
                 try {
                     var login = await this.axios.post("/login", this.user);
                     if(login.data){
@@ -48,10 +64,10 @@
                         this.$router.push({ name: "my-projects" });
                     }
                     else{
-                        console.log(login)
+                        this.loginError = 'Usuário ou senha errados'
                     }
                 } catch (error) {
-                    console.log(error);
+                    this.loginError = 'Usuário ou senha errados'
                 }
             },
         }

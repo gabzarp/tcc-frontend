@@ -3,6 +3,11 @@ import VueRouter from "vue-router";
 import App from "./App.vue";
 import api from "./api/axios";
 import VueSession from "vue-session";
+import { ValidationObserver, ValidationProvider} from 'vee-validate';
+
+
+Vue.component('ValidationObserver', ValidationObserver);
+Vue.component('ValidationProvider', ValidationProvider);
 
 Vue.use(VueSession);
 Vue.use(VueRouter);
