@@ -22,6 +22,10 @@
         ></textarea>
       </div>
       <div class="form-group">
+        <label for="dueDate">Data de entrega:</label>
+        <input type="date" class="form-control" id="dueDate" v-model="project.dueDate">
+      </div>
+      <div class="form-group">
         <button type="submit" class="btn-primary btn">Criar</button>
       </div>
     </form>
@@ -35,7 +39,8 @@ export default {
       project: {
         name: "",
         description: "",
-        owner: this.$session.get('userId')
+        owner: this.$session.get('userId'),
+        dueDate: ""
       },
     };
   },

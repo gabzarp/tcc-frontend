@@ -49,7 +49,7 @@ export default {
   async mounted() {
     const projectRes = await this.axios.get("/projects");
     this.projects = projectRes.data.filter(project =>{
-      if (((this.role == 'Scrum master' && project.taken == false) || (this.role != 'Scrum master')) && project.isFinished == false ) {
+      if (((this.role == 'Scrum master' && !project.taken) || (this.role != 'Scrum master')) && !project.isFinished) {
         return project;
       }
     })

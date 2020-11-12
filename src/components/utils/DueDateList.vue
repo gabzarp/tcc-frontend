@@ -23,7 +23,7 @@
                 </div>
                 <div class="form-group">
                   <label for="description" class="sr-only">Descrição</label>
-                  <input type="text" id="description" class="form-control" placeholder="Descrição" v-model="todo.description">
+                  <input type="text" class="form-control" placeholder="Descrição" v-model="todo.description">
                 </div>
               </div>
             </div>
