@@ -46,11 +46,7 @@ export default {
   },
   async mounted() {
     const user = await this.axios.get("/user/"+this.userId);
-    this.projects = user.data.projects.filter(project=>{
-      if(project.isFinished == false){
-        return project
-      }
-    })
+    this.projects = user.data.projects
     this.isLoading = false;
   },
   methods: {

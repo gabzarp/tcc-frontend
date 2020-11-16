@@ -24,7 +24,7 @@
       <div class="col-12 pb-2">
         <div v-if="project.invites.length > 0">
           <MemberCard v-for="(invite, index) of project.invites"
-          :key="index" isSolicitation="true" :memberData="invite" projectData="project"></MemberCard>
+          :key="index" isSolicitation="true" :memberData="invite" :projectData="project"></MemberCard>
         </div>
         <span v-else>Não existem solicitações para este projeto</span>
       </div>
@@ -66,6 +66,7 @@ export default {
   async mounted() {
     const projectRes = await this.axios.get(`project/${this.$route.params.id}`);
     this.project = projectRes.data;
+    console.log(this.project)
     this.project.externalSources.forEach(external => {
       if (external.name == 'slack') {
         this.slack.link = external.link
