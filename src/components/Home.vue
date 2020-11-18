@@ -1,22 +1,22 @@
 <template>
   <div class="container">
     <div class="row justify-content-center py-5">
-      <img class="img-fluid" src="../assets/logo.png" alt="">
     </div>
     <div class="row ">
       <div class="col-6">
-        <h3 class="mt-0 mb-3">Apresente sua ideia ou seja um colaborador e faça ideias virarem solução</h3>
-        <p>Criamos um elo entre empresas que possuem ideias e colaboradores que desejam desenvolver as soluções de software utilizando nossa aplicação de auxílio na gestão de projetos.</p>
+        <img class="img-fluid mb-3" src="../assets/logo.png" alt="">
+        <h2 class="mt-0 mb-4">Apresente sua ideia ou seja um colaborador e faça ideias virarem solução</h2>
+        <h5 class="pb-2 text-align-justify">Criamos um elo entre empresas que possuem ideias e colaboradores que desejam desenvolver as soluções de software utilizando nossa aplicação de auxílio na gestão de projetos.</h5>
         <div class="row pt-4">          
-          <div class="col-12 d-flex justify-content-around">
-            <router-link class="btn btn-primary" to="/signup-company">Quero apresentar minha ideia</router-link>
+          <div class="col-12 d-flex">
+            <router-link class="btn btn-primary mr-3" to="/signup-company">Quero apresentar minha ideia</router-link>
             <router-link class="btn btn-primary" to="/signup-member">Quero ser colaborador</router-link>
           </div>  
         </div>
       </div>
         <div class="col-6">
-          <img class="img-fluid shadow" src="/images/home.jpg" alt="">
-          <h3  class="mt-3">Uma nova experiência em gestão de projetos!</h3>
+          <img class="img-fluid shadow pt-3" src="/images/home.jpg" alt="">
+          <h4  class="mt-4">Uma nova experiência em gestão de projetos!</h4>
         </div>
     </div>
   </div>
