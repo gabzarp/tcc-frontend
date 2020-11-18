@@ -3,16 +3,20 @@
     <div class="row justify-content-center py-5">
       <img class="img-fluid" src="../assets/logo.png" alt="">
     </div>
-    <div class="row">
+    <div class="row ">
       <div class="col-6">
-        <img class="img-fluid" src="https://via.placeholder.com/800x320" alt="">
+        <h3 class="mt-0 mb-3">Apresente sua ideia ou seja um colaborador e faça ideias virarem solução</h3>
+        <p>Criamos um elo entre empresas que possuem ideias e colaboradores que desejam desenvolver as soluções de software utilizando nossa aplicação de auxílio na gestão de projetos.</p>
+        <div class="row pt-4">          
+          <div class="col-12 d-flex justify-content-around">
+            <router-link class="btn btn-primary" to="/signup-company">Quero apresentar minha ideia</router-link>
+            <router-link class="btn btn-primary" to="/signup-member">Quero ser colaborador</router-link>
+          </div>  
+        </div>
       </div>
-      <div class="col-6"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris aliquet lacinia mi, sit amet faucibus nisi facilisis sed. Vivamus et pellentesque sem, a luctus quam. Proin tempus dolor efficitur dolor euismod tempus. Nulla facilisi. Curabitur varius placerat tortor eget elementum. Curabitur sodales dictum elit, sit amet commodo nunc sollicitudin sed. Nullam ut consequat erat, eget vehicula libero. Aliquam dapibus, lorem pretium tincidunt porta, lacus risus mattis urna, et dapibus lectus libero vitae augue. Praesent quis lorem eget mi accumsan sagittis nec nec tellus. Pellentesque sed cursus velit.</p></div>
-    </div>
-    <div class="row pt-2">
-      <div class="col-6"><p>Suspendisse quis vestibulum tortor. Nulla elit eros, faucibus nec consequat ac, tempor vel justo. Cras dignissim ut nunc quis consequat. Sed ut bibendum erat. Pellentesque ut purus eu est bibendum malesuada. Nullam feugiat malesuada lacus, ac feugiat urna ullamcorper ac. Mauris faucibus ultricies ipsum, non finibus sem sagittis et. Vivamus dignissim mattis dui, sed dignissim quam lacinia ac. Morbi sit amet ipsum odio. Maecenas pretium lacinia posuere.</p></div>
         <div class="col-6">
-          <img class="img-fluid" src="https://via.placeholder.com/800x250" alt="">
+          <img class="img-fluid shadow" src="/images/home.jpg" alt="">
+          <h3  class="mt-3">Uma nova experiência em gestão de projetos!</h3>
         </div>
     </div>
   </div>

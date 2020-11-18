@@ -26,7 +26,7 @@
                             </validation-provider>                        
                         </div>
                         <div class="form-group">    
-                            <validation-provider rules="required" v-slot="{ errors }">
+                            <validation-provider rules="required|cnpj"  v-mask="'##.###.###/####-##'" v-slot="{ errors }">
                                 <input class="form-control" type="text" placeholder="CNPJ" v-model="user.cnpj">
                                 <span class="mt-1 text-danger">{{ errors[0] }}</span>                        
                             </validation-provider>                        

@@ -4,6 +4,7 @@ import App from "./App.vue";
 import api from "./api/axios";
 import VueSession from "vue-session";
 import { ValidationObserver, ValidationProvider} from 'vee-validate';
+import VueMask from 'v-mask'
 
 
 Vue.component('ValidationObserver', ValidationObserver);
@@ -11,6 +12,7 @@ Vue.component('ValidationProvider', ValidationProvider);
 
 Vue.use(VueSession);
 Vue.use(VueRouter);
+Vue.use(VueMask);
 
 Vue.prototype.axios = api;
 

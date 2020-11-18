@@ -37,8 +37,8 @@
                             </validation-provider>                      
                         </div>
                         <div class="form-group">    
-                            <validation-provider rules="required" v-slot="{ errors }">
-                                <input class="form-control" type="text" placeholder="CPF" v-model="user.cpf">
+                            <validation-provider rules="required|cpf" v-slot="{ errors }">
+                                <input class="form-control" type="text" v-mask="'###.###.###-##'" placeholder="CPF" v-model="user.cpf">
                                 <span class="mt-1 text-danger">{{ errors[0] }}</span>
                             </validation-provider>                        
                         </div>
