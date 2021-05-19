@@ -13,6 +13,9 @@
           <router-link class="btn btn-primary" v-if="isScrumMaster && memberData.position != 'Scrum master'" :to="{path: `/project/${projectData._id}/member-evaluation/${memberData._id}` }"> 
             Avaliar 
           </router-link>
+          <button v-if="isScrumMaster && memberData.position != 'Scrum master'" class="btn btn-primary" @click="downloadFile">
+            Baixar currículo
+          </button>
           <div v-if="isSolicitation" class="d-flex py-2">
             <a href="#" class="btn btn-success text-decoration-none mr-2" v-on:click="accept(memberData.user._id)" >Aceitar</a>
             <a href="#" class="btn btn-danger text-decoration-none">Ignorar</a>
@@ -71,6 +74,15 @@ export default {
               console.log(error);
           }
       },
+      async downloadFile() {                          
+          let res = await this.axios.get(`/member-file/${this.memberData._id}`, {responseType: 'blob'})
+          let fileURL = window.URL.createObjectURL(new Blob([res.data]));                
+          let fileLink = document.createElement('a');
+          fileLink.href = fileURL;
+          fileLink.setAttribute('download', `curriculo-${this.memberData.user.name}.pdf`);
+          document.body.appendChild(fileLink);
+          fileLink.click();
+      }      
   }
 }
 </script>
