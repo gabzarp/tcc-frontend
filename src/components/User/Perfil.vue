@@ -24,7 +24,16 @@
                         <input class="form-control" type="text" placeholder="CPF" v-model="member.cpf">
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-primary ">
+                        <label for="curriculum" class="text-white">Importar currículo</label>
+                        <input class="form-control-file text-white" type="file" placeholder="Curriculo" name="curriculum" ref="files" id="curriculum">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" @click.prevent="downloadFile">
+                            Baixar currículo
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary " @click="sendFile">
                             Atualizar
                         </button>
                     </div>
@@ -63,6 +72,22 @@
                     console.log(error);
                 }
             },
+            async sendFile() {
+                let dataForm = new FormData();
+                dataForm.append('curriculum', this.$refs.files.files[0])
+                dataForm.append('userId', this.member._id)
+                await this.axios.post("/member-file", dataForm);                                
+            },
+            async downloadFile() {                
+                let res = await this.axios.get(`/member-file/${this.$session.get('expecificId')}`, {responseType: 'blob'})
+                let fileURL = window.URL.createObjectURL(new Blob([res.data]));                
+                let fileLink = document.createElement('a');
+
+                fileLink.href = fileURL;
+                fileLink.setAttribute('download', `curriculo.pdf`);
+                document.body.appendChild(fileLink);
+                fileLink.click();
+            }
         },
         async mounted() {
             const memberRes = await this.axios.get(`/member/${this.$session.get('expecificId')}`);
