@@ -34,7 +34,7 @@
             <router-link class="nav-link px-4" to="/signup-company">Quero realizar meu projeto</router-link>
           </li>
           <li v-if="!user_type" class="nav-item active border-right">
-            <router-link class="nav-link px-4" to="/signup-member">Quero ser colaborador</router-link>
+            <router-link class="nav-link px-4" to="/signup-member">Quero ser prestador de serviços</router-link>
           </li>
         </ul>
       </div>

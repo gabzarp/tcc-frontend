@@ -5,12 +5,12 @@
     <div class="row ">
       <div class="col-6">
         <img class="img-fluid mb-3" src="../assets/logo.png" alt="">
-        <h2 class="mt-0 mb-4">Apresente sua ideia ou seja um colaborador e faça ideias virarem solução</h2>
-        <h5 class="pb-2 text-align-justify">Criamos um elo entre empresas que possuem ideias e colaboradores que desejam desenvolver as soluções de software utilizando nossa aplicação de auxílio na gestão de projetos.</h5>
+        <h2 class="mt-0 mb-4">Apresente sua ideia ou seja um prestador de serviços e faça ideias virarem solução</h2>
+        <h5 class="pb-2 text-align-justify">Criamos um elo entre empresas que possuem ideias e prestadores de serviço que desejam desenvolver as soluções de software utilizando nossa aplicação de auxílio na gestão de projetos.</h5>
         <div class="row pt-4">          
           <div class="col-12 d-flex">
             <router-link class="btn btn-primary mr-3" to="/signup-company">Quero apresentar minha ideia</router-link>
-            <router-link class="btn btn-primary" to="/signup-member">Quero ser colaborador</router-link>
+            <router-link class="btn btn-primary" to="/signup-member">Quero ser um prestador de serviços</router-link>
           </div>  
         </div>
       </div>

@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             <div class="col-7 mt-5 bg-gray">
                 <div class=" pt-3 justify-content-center text-center">
-                    <h2 class="text-white">Cadastro de colaborador</h2>
+                    <h2 class="text-white">Cadastro de prestador de serviços</h2>
                 </div>
                 <ValidationObserver v-slot="{ handleSubmit }">
                     <form @submit.prevent="handleSubmit(onSubmit)">

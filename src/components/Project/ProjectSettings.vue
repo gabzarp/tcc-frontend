@@ -37,13 +37,31 @@
         <DueDateList/>
       </div>
     </div>
+    <div class="row py-3 bg-gray mt-2 mb-3">
+      <div class="col-12">
+        <h4 class="text-light">Custos:</h4>
+      </div>
+      <div class="col-12">
+        <ExpensesList/>
+      </div>
+    </div>
+    <div class="row py-3 bg-gray mt-2 mb-3">
+      <div class="col-12">
+        <h4 class="text-light">Riscos:</h4>
+      </div>
+      <div class="col-12">
+        <RisksList/>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 
 import MemberCard from '../utils/MemberCard'
+import ExpensesList from '../utils/ExpensesList'
 import DueDateList from '../utils/DueDateList'
+import RisksList from '../utils/RisksList'
 
 export default {
   data(){
@@ -61,7 +79,9 @@ export default {
   },
   components: {
     MemberCard,
-    DueDateList
+    DueDateList,
+    ExpensesList,
+    RisksList
   },
   async mounted() {
     const projectRes = await this.axios.get(`project/${this.$route.params.id}`);

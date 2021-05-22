@@ -26,7 +26,11 @@
       <a v-for="(external, index) of project.externalSources" :key="index" class="m-3 d-block px-2" :href="external.link" target="_blank">
         <img class="img-fluid" :src="require(`@/assets/${external.name}.svg`)"/>
       </a>
-    </div>
+      </div>
+      <div class="col-10 bg-gray py-2 text-light mt-3">
+        <h4>Escopo:</h4>
+        <p>{{project.scope}}</p>
+      </div>
     </div>
     <div v-if="!isLoading" class="row pt-3">
       <div class="col-10 bg-gray py-2 text-light">
@@ -40,15 +44,62 @@
       <div class="col-10 bg-gray py-2 text-light">
         <h4>Entregas:</h4>
         <div class="row" v-if="deadLines.length > 0">
-          <div class="col-4 p-2 border border-muted rounded-lg p-2 m-2" :class="{'border-success' : isOnTime(deadLine.deadLine), 'border-danger' : !isOnTime(deadLine.deadLine)} " v-for="deadLine in deadLines" :key="deadLine._id">
+          <div class="col-4 p-2 border border-muted rounded-lg p-2 m-2" :class="{'border-success' : isOnTime(deadLine), 'border-danger' : !isOnTime(deadLine)} " v-for="deadLine in deadLines" :key="deadLine._id">
             <div class="col-8">
               <h5 class="font-weight-bold">{{deadLine.name}}</h5>
               <p class="m-0">{{deadLine.description}}</p>
-              <p class="font-weight-bold" :class="{'text-success' : isOnTime(deadLine.deadLine), 'text-danger' : !isOnTime(deadLine.deadLine)} ">{{new Date(deadLine.deadLine).toLocaleDateString()}}</p>
+              <p class="font-weight-bold" :class="{'text-success' : isOnTime(deadLine), 'text-danger' : !isOnTime(deadLine)} ">{{new Date(deadLine.deadLine).toLocaleDateString()}}</p>
+              <p v-if="deadLine.finished == true" class="text-sucess">Finalizado</p>
+              <button v-if="user_type == 'company' && deadLine.finished == false" class="btn btn-primary" @click="finishDeadLine(deadLine)">Finalizar</button>
             </div>
           </div>
         </div>
           <span v-else>Não há entregas neste projeto.</span>
+      </div>
+    </div>
+    <div v-if="!isLoading" class="row pt-3">
+      <div class="col-10 bg-gray py-2 text-light">
+        <h4>Custos:</h4>
+        <div class="row" v-if="expenses.length > 0">
+          <div class="col-4 p-2 border border-muted rounded-lg p-2 m-2" v-for="expense in expenses" :key="expense._id">
+            <div class="col-8">
+              <h5 class="font-weight-bold">Nome: {{expense.name}}</h5>
+              <p class="m-0">Descrição: {{expense.description}}</p>
+              <p class="m-0">Custo: {{expense.cost}}</p>
+              <p class="font-weight-bold">Data: {{new Date(expense.date).toLocaleDateString()}}</p>
+            </div>
+          </div>
+        </div>
+          <span v-else>Não há custos neste projeto.</span>
+      </div>
+    </div>
+    <div v-if="!isLoading" class="row pt-3">
+      <div class="col-10 bg-gray py-2 text-light">
+        <h4>Riscos:</h4>
+        <div class="row" v-if="risks.length > 0">
+          <div class="col-4 p-2 border border-muted rounded-lg p-2 m-2" v-for="risk in risks" :key="risk._id">
+            <div class="col-8">
+              <h5 class="font-weight-bold">Nome: {{risk.name}}</h5>
+              <p class="m-0">Descrição: {{risk.description}}</p>
+              <p class="font-weight-bold">Data: {{new Date(risk.date).toLocaleDateString()}}</p>
+            </div>
+          </div>
+        </div>
+          <span v-else>Não há custos neste projeto.</span>
+      </div>
+    </div>
+    <div v-if="!isLoading" class="row mt-3">
+      <div class="col-10 bg-gray py-2 text-light">
+        <h4>Justificação:</h4>
+        <p>{{project.justification}}</p>
+      </div>
+      <div class="col-10 bg-gray py-2 text-light mt-3">
+        <h4>Finalidade:</h4>
+        <p>{{project.goal}}</p>
+      </div>
+      <div class="col-10 bg-gray py-2 text-light mt-3">
+        <h4>Objetivos:</h4>
+        <p>{{project.objectives}}</p>
       </div>
     </div>
   </div>  
@@ -64,9 +115,10 @@
       return {
         project: {},
         deadLines: [],
+        expenses: [],
         role: this.$session.get('role'),
-        isLoading: true
-
+        isLoading: true,
+        user_type: typeof this.$session.get('userType') !== 'undefined' ? this.$session.get('userType') : false
       };
     }, 
     components:{
@@ -74,15 +126,27 @@
     },
     async mounted() {
       const deadLineRes = await this.axios.get(`dead-lines/${this.$route.params.id}`)
+      const expensesRes = await this.axios.get(`expenses/${this.$route.params.id}`)
+      const risksRes = await this.axios.get(`risks/${this.$route.params.id}`)
       const projectRes = await this.axios.get(`project/${this.$route.params.id}`);
       this.project = projectRes.data;
       this.deadLines = deadLineRes.data;
+      this.risks = risksRes.data;
+      this.expenses = expensesRes.data;
       this.isLoading = false
     },
     methods: {
       isOnTime(dueDate){
-        return !(new Date(dueDate) < new Date())
+        if(dueDate.finished){
+          return true;
+        }
+        return !(new Date(dueDate.dueDate) < new Date()) 
+      },
+      finishDeadLine(deadLine){
+        deadLine.finished = true;
+        this.axios.patch(`dead-line`, deadLine);
       }
+
     }
   };
 </script>

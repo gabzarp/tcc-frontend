@@ -22,6 +22,42 @@
         ></textarea>
       </div>
       <div class="form-group">
+        <label for="scope">Escopo:</label>
+        <textarea
+          name="scope"
+          id="scope"
+          class="form-control"
+          v-model="project.scope"
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="justification">Justificativa:</label>
+        <textarea
+          name="justification"
+          id="justification"
+          class="form-control"
+          v-model="project.justification"
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="goal">Finalidade:</label>
+        <textarea
+          name="goal"
+          id="goal"
+          class="form-control"
+          v-model="project.goal"
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="objectives">Objetivos:</label>
+        <textarea
+          name="objectives"
+          id="objectives"
+          class="form-control"
+          v-model="project.objectives"
+        ></textarea>
+      </div>
+      <div class="form-group">
         <label for="dueDate">Data de entrega:</label>
         <input type="date" class="form-control" id="dueDate" v-model="project.dueDate">
       </div>
@@ -39,6 +75,10 @@ export default {
       project: {
         name: "",
         description: "",
+        scope: "",
+        justification: "",
+        objectives: "",
+        goal: "",
         owner: this.$session.get('userId'),
         dueDate: ""
       },
