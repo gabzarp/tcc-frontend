@@ -43,7 +43,11 @@
                             </validation-provider>                        
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-primary ">
+                            <label for="curriculum" class="text-white">Importar currículo</label>
+                            <input class="form-control-file text-white" type="file" placeholder="Curriculo" name="curriculum" ref="files" id="curriculum">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary">
                                 Cadastrar
                             </button>
                         </div>
@@ -79,6 +83,7 @@
                         this.$session.set('userType', login.data.user.user_type);
                         this.$session.set('role', login.data.position);
                         this.$router.push({ name: "my-projects" });
+                        this.sendFile(this.$session.get('expecificId'));
                     }
                     else{
                         console.log(login)
@@ -87,7 +92,17 @@
                     console.log(error);
                 }
             },
-        }
+            async sendFile(userId) {
+                try {                        
+                    let dataForm = new FormData();                
+                    dataForm.append('curriculum', this.$refs.files.files[0])
+                    dataForm.append('userId', userId)
+                    await this.axios.post("/member-file", dataForm);
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+        },
     };
   </script>
   
