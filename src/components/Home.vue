@@ -1,23 +1,23 @@
 <template>
-  <div class="container">
+  <div class="container-lg">
     <div class="row justify-content-center py-5">
     </div>
     <div class="row ">
-      <div class="col-6">
-        <img class="img-fluid mb-3" src="../assets/logo.png" alt="">
-        <h2 class="mt-0 mb-4">Apresente sua ideia ou seja um prestador de serviços e faça ideias virarem solução</h2>
-        <h5 class="pb-2 text-align-justify">Criamos um elo entre empresas que possuem ideias e prestadores de serviço que desejam desenvolver as soluções de software utilizando nossa aplicação de auxílio na gestão de projetos.</h5>
+      <div class="col-6 d-flex flex-column justify-content-center">
+        <h1 class="mt-4">Uma nova experiência em gestão de projetos!</h1>
+        <p class="mt-3 mb-1">Apresente sua ideia ou seja um prestador de serviços e faça ideias virarem solução</p>
+        <p class="pb-2 text-align-justify">Criamos um elo entre empresas que possuem ideias e prestadores de serviço que desejam desenvolver as soluções de software utilizando nossa aplicação de auxílio na gestão de projetos.</p>
+    
         <div class="row pt-4">          
-          <div class="col-12 d-flex">
-            <router-link class="btn btn-primary mr-3" to="/signup-company">Quero apresentar minha ideia</router-link>
-            <router-link class="btn btn-primary" to="/signup-member">Quero ser um prestador de serviços</router-link>
+          <div class="col-12 d-flex flex-column align-items-center">
+            <router-link class="btn btn-primary mb-3" style="width: 340px" to="/signup-company">Quero apresentar minha ideia</router-link>
+            <router-link class="btn btn-primary" style="width: 340px" to="/signup-member">Quero ser um prestador de serviços</router-link>
           </div>  
         </div>
       </div>
-        <div class="col-6">
-          <img class="img-fluid shadow pt-3" src="/images/home.jpg" alt="">
-          <h4  class="mt-4">Uma nova experiência em gestão de projetos!</h4>
-        </div>
+      <div class="col-6">
+        <img class="img-fluid shadow pt-3" src="/images/tcc-home.png" alt="">
+      </div>
     </div>
   </div>
 </template>

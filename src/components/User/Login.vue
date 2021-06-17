@@ -1,9 +1,9 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-7 mt-5 bg-gray">
+            <div class="col-7 mt-5">
                 <div class=" pt-3 justify-content-center text-center">
-                    <h2 class="text-light">Login</h2>
+                    <h2 class="text-dark">Login</h2>
                 </div>
                 <ValidationObserver v-slot="{ handleSubmit }">
                     <form @submit.prevent="handleSubmit(onSubmit)">
@@ -19,8 +19,8 @@
                                 <span class="mt-1 text-danger">{{ errors[0] }}</span>
                             </validation-provider>
                         </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary ">
+                        <div class="form-group d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary px-5">
                                 Login
                             </button>
                         </div>

@@ -1,10 +1,10 @@
 <template>
-  <div class="col-4 p-2">
-    <div class="d-flex shadow border border-muted rounded-lg p-2 h-100">
-      <div class="col-4">
+  <div class="col-4 pr-2 pl-0">
+    <div class="d-flex bg-white border border-muted rounded-lg p-2 h-100">
+      <div class="col-4 ">
         <img src="../../assets/avatar.svg" class="img-fluid rounded-circle">
       </div>
-      <div class="col-8 text-light">
+      <div class="col-8 text-dark pt-2">
         <h5>{{memberData.user.name}}</h5>
         <p class="mb-1">{{memberData.position}}</p>
           <div v-if="!isScrumMaster">Prazo: {{dueDate}}</div>

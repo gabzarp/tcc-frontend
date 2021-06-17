@@ -1,9 +1,9 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-7 mt-5 bg-gray">
+            <div class="col-7 mt-5">
                 <div class=" pt-3 justify-content-center text-center">
-                    <h2 class="text-white">Cadastro de prestador de serviços</h2>
+                    <h2 class="text-dark">Cadastro de prestador de serviços</h2>
                 </div>
                 <ValidationObserver v-slot="{ handleSubmit }">
                     <form @submit.prevent="handleSubmit(onSubmit)">
@@ -43,11 +43,11 @@
                             </validation-provider>                        
                         </div>
                         <div class="form-group">
-                            <label for="curriculum" class="text-white">Importar currículo</label>
-                            <input class="form-control-file text-white" type="file" placeholder="Curriculo" name="curriculum" ref="files" id="curriculum">
+                            <label for="curriculum" class="text-dark">Importar currículo</label>
+                            <input class="form-control-file text-dark" type="file" placeholder="Curriculo" name="curriculum" ref="files" id="curriculum">
                         </div>
-                        <div class="form-group">
-                            <button class="btn btn-primary">
+                        <div class="form-group form-group d-flex justify-content-center">
+                            <button class="btn btn-primary px-5">
                                 Cadastrar
                             </button>
                         </div>
