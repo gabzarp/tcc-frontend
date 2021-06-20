@@ -3,24 +3,24 @@
     <div class="row justify-content-center">
       <div v-if="isLoading" class="m-auto"><img src="../../../assets/loading.svg" alt="loading" ></div>
 
-      <div v-if="!isLoading" class="col-4 mt-3 text-light">
-        <div class="py-3 px-3 bg-gray">  
+      <div v-if="!isLoading" class="col-4 mt-3 text-dark">
+        <div class="py-3 px-3 bg-white">  
           <h4>Comunicação</h4>
           <ul class="pl-0">
             <li :key="index" class="border-top py-2" v-for="(communication, index) of communications"><b>{{(index + 1)}}:</b> {{communication.name}}. Nota: {{communication.communication}}</li>
           </ul>
         </div>
       </div>
-      <div v-if="!isLoading" class="col-4 mt-3 text-light">
-        <div class="py-3 px-3 bg-gray">  
+      <div v-if="!isLoading" class="col-4 mt-3 text-dark">
+        <div class="py-3 px-3 bg-white">  
           <h4>Conhecimento técnico</h4>
           <ul class="pl-0">
             <li :key="index" class="border-top py-2" v-for="(technicalKnowledge, index) of technicalKnowledges"><b>{{(index + 1)}}:</b> {{technicalKnowledge.name}}. Nota: {{technicalKnowledge.technicalKnowledge}}</li>
           </ul>
         </div>
       </div>
-      <div v-if="!isLoading" class="col-4 mt-3 text-light">
-        <div class="py-3 px-3 bg-gray">  
+      <div v-if="!isLoading" class="col-4 mt-3 text-dark">
+        <div class="py-3 px-3 bg-white">  
           <h4>Entrega no prazo</h4>
           <ul class="pl-0">
             <li :key="index" class="border-top py-2" v-for="(dueDate, index) of dueDates"><b>{{(index + 1)}}:</b> {{dueDate.name}}. Nota: {{dueDate.dueDate}}</li>

@@ -10,15 +10,15 @@
           <div v-if="!isScrumMaster">Prazo: {{dueDate}}</div>
           <div v-if="!isScrumMaster">Comunicação: {{communication}}</div>
           <div v-if="!isScrumMaster">Conhecimento técnico: {{technicalKnowledge}}</div>
-          <router-link class="btn btn-primary" v-if="isScrumMaster && memberData.position != 'Scrum master'" :to="{path: `/project/${projectData._id}/member-evaluation/${memberData._id}` }"> 
+          <router-link class="text-yellow" v-if="isScrumMaster && memberData.position != 'Scrum master'" :to="{path: `/project/${projectData._id}/member-evaluation/${memberData._id}` }"> 
             Avaliar 
           </router-link>
-          <button v-if="isScrumMaster && memberData.position != 'Scrum master'" class="btn btn-primary" @click="downloadFile">
+          <a href="javascript:void(0)" v-if="isScrumMaster && memberData.position != 'Scrum master'" class="text-yellow pl-3" @click="downloadFile">
             Baixar currículo
-          </button>
+          </a>
           <div v-if="isSolicitation" class="d-flex py-2">
-            <a href="#" class="btn btn-success text-decoration-none mr-2" v-on:click="accept(memberData.user._id)" >Aceitar</a>
-            <a href="#" class="btn btn-danger text-decoration-none">Ignorar</a>
+            <a href="javascript:void(0)" class="btn btn-success text-decoration-none mr-2" v-on:click="accept(memberData.user._id)" >Aceitar</a>
+            <a href="javascript:void(0)" class="btn btn-danger text-decoration-none">Ignorar</a>
           </div>
 
       </div>

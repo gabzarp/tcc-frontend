@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <h1>Avaliações de {{member ? member.user.name : 'usuário'}}</h1>
-        <form @submit.prevent="handleSubmit" class="bg-gray py-3 text-light">
+        <form @submit.prevent="handleSubmit" class="py-3 text-dark border">
             <div class="col-12">
                 <div class="d-flex flex-column">
                     <h3>Entregas no prazo:</h3>
@@ -98,9 +98,9 @@
       return {
         project: {_id: '0'},
         member: { _id: '0'},
-        dueDate: {type: "5f8cc48101fca84044fccbe9", score: 0, project: this.$route.params.id, member: this.$route.params.member},
-        technicalKnowledge: {type: "5f8ce43e01fca84044fccbeb", score: 0, project: this.$route.params.id, member: this.$route.params.member},
-        communication: {type:"5f8ce42b01fca84044fccbea", score: 0, project: this.$route.params.id, member: this.$route.params.member},
+        dueDate: {type: "60ceb8341fb00c0f161a9ef4", score: 0, project: this.$route.params.id, member: this.$route.params.member},
+        technicalKnowledge: {type: "60ceb8411fb00c0f161a9ef5", score: 0, project: this.$route.params.id, member: this.$route.params.member},
+        communication: {type:"60ceb8481fb00c0f161a9ef6", score: 0, project: this.$route.params.id, member: this.$route.params.member},
       };
     },
     methods: {

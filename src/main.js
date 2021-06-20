@@ -5,6 +5,8 @@ import api from "./api/axios";
 import VueSession from "vue-session";
 import { ValidationObserver, ValidationProvider} from 'vee-validate';
 import VueMask from 'v-mask'
+import VModal from 'vue-js-modal/dist/index.nocss.js'
+import 'vue-js-modal/dist/styles.css'
 
 
 Vue.component('ValidationObserver', ValidationObserver);
@@ -13,6 +15,7 @@ Vue.component('ValidationProvider', ValidationProvider);
 Vue.use(VueSession);
 Vue.use(VueRouter);
 Vue.use(VueMask);
+Vue.use(VModal, { dynamicDefault: { adaptive: true } })
 
 Vue.prototype.axios = api;
 

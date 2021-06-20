@@ -11,8 +11,41 @@
           <h2 v-if="project.isFinished" class="text-danger">Este projeto está finalizado</h2>
           <h2 v-if="!project.isFinished && new Date(project.dueDate) < new Date()" class="text-danger">Este projeto está atrasado.</h2>
           <h2>{{ project.name }}</h2>
-          <h6>{{ "Dono" }}</h6>
+          <h6>{{ project.owner.name }}</h6>
         </div>
+      </div>
+      <div class="row pb-4 d-flex align-items-center">
+        <div class="col-1 pl-0">
+          <router-link :to="{path: `/project/${this.$route.params.id}/settings`}" class="w-100">
+            <img src="../../assets/settings.svg" alt="Configurações do projeto" class="img-fluid w-50">
+          </router-link>
+        </div>
+        <div class="col-1">
+          <a class="w-100" href="javascript:void(0)" v-on:click="$modal.show('chat')">
+            <img class="img-fluid w-50" :src="require(`@/assets/chat.png`)"/>
+          </a>
+        </div>
+        <modal name="chat" height="auto" v-if="project.chat">
+          <div class="" style="overflow-y: scroll;height: 600px;">
+            <div class="d-flex flex-column">
+              <div class="col-5 border bg-white py-2 m-2" v-for="message of messages" :key="message._id" v-bind:class="{ 'align-self-end border border-yellow': (message.user._id == userId) }">
+                <p class="h6 mb-0" style="font-size:11px !important;">{{message.user.name}}</p>
+                <p class="h6" style="font-size:16px !important;">{{message.message}}</p>
+                <p class="h6 mb-0" style="font-size:11px !important;">{{new Date(message.date).toLocaleString()}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex px-3 py-2">
+              <input type="text" class="form-control mb-0 col-10 mr-2" v-model="newMessage.message">
+              <a class="btn btn-primary py-1" href="javascript:void(0)" v-on:click="sendMessage()">Enviar</a>
+          </div>
+        </modal>
+        <div class="col-1">
+          <a v-for="(external, index) of project.externalSources" :key="index" class="w-100" :href="external.link" target="_blank">
+            <img class="img-fluid w-50" :src="require(`@/assets/${external.name}.svg`)"/>
+          </a>
+        </div>
+
       </div>
       <div v-if="!isLoading" class="row">
         <div class="col-12 px-0 py-2 text-dark">
@@ -42,7 +75,7 @@
               <h6 class="mb-0 font-weight-bold font-size-11">{{remainingDays(deadLine)}}</h6>
             </div>
             <div class="col-12 p-2 border bg-white border-muted rounded-lg p-2" >
-              <div class="col-12 px-3">
+              <div class="col-12 px-3 mb-3">
                 <h5 class="pt-2 pb-2">{{deadLine.name}}</h5>
                 <p class="m-0 font-size-11">DESCRIÇÃO:</p>
                 <p class="m-0 mb-2">{{deadLine.description}}</p>
@@ -61,15 +94,15 @@
         <div class="col-12 px-0 py-2 text-dark">
           <h4 class="font-weight-bold">Custos:</h4>
           <div class="col-12 px-0 d-flex" v-if="expenses.length > 0">
-            <div class="col-3 p-2 bg-white border border-muted rounded-lg" v-for="expense in expenses" :key="expense._id">
-              <div class="col-8">
-                <h5 class="pt-2 pb-2">{{expense.name}}</h5>
+            <div class="col-3 pl-0 mb-3" v-for="expense in expenses" :key="expense._id">
+              <div class="col-12 px-3 bg-white border border-muted rounded-lg">
+                <h5 class="pt-3 pb-2">{{expense.name}}</h5>
                 <p class="m-0 font-size-11">DESCRIÇÃO:</p>
                 <p class="m-0 mb-2">{{expense.description}}</p>
                 <p class="m-0 font-size-11">CUSTO:</p>
-                <p class="m-0 mb-2">{{expense.cost}}</p>
+                <p class="m-0 mb-2">R$ {{expense.cost}}</p>
                 <p class="m-0 font-size-11">DATA:</p>
-                <p class="m-0">{{new Date(expense.date).toLocaleDateString()}}</p>
+                <p class="m-0 pb-2">{{new Date(expense.date).toLocaleDateString()}}</p>
               </div>
             </div>
           </div>
@@ -80,13 +113,13 @@
         <div class="col-12 px-0 py-2 text-dark">
           <h4>Riscos:</h4>
           <div class="col-12 px-0 d-flex" v-if="risks.length > 0">
-            <div class="col-3 p-2 bg-white border border-muted rounded-lg p-2" v-for="risk in risks" :key="risk._id">
-              <div class="col-8">
-                <h5 class="pt-2 pb-2">{{risk.name}}</h5>
+            <div class="col-3 pl-0 mb-3" v-for="risk in risks" :key="risk._id">
+              <div class="col-12 px-3 bg-white border border-muted rounded-lg p-2">
+                <h5 class="pt-3 pb-2">{{risk.name}}</h5>
                 <p class="m-0 font-size-11">DESCRIÇÃO:</p>
                 <p class="m-0 mb-2">{{risk.description}}</p>
                 <p class="m-0 font-size-11">DATA:</p>
-                <p class="m-0">{{new Date(risk.date).toLocaleDateString()}}</p>
+                <p class="m-0 pb-2">{{new Date(risk.date).toLocaleDateString()}}</p>
               </div>
             </div>
           </div>
@@ -108,14 +141,6 @@
         </div>
       </div>
       </div>
-      <div class="col-2">
-        <div class="pt-0 px-5">
-          <h4>Links externos:</h4>
-          <a v-for="(external, index) of project.externalSources" :key="index" class="m-3 d-block px-2" :href="external.link" target="_blank">
-            <img class="img-fluid w-100" :src="require(`@/assets/${external.name}.svg`)"/>
-          </a>
-        </div>
-      </div>
     </div>
   </div>  
 </template>
@@ -131,9 +156,13 @@
         project: {},
         deadLines: [],
         expenses: [],
+        messages: [],
+        newMessage: {
+        },
         role: this.$session.get('role'),
         isLoading: true,
-        user_type: typeof this.$session.get('userType') !== 'undefined' ? this.$session.get('userType') : false
+        user_type: typeof this.$session.get('userType') !== 'undefined' ? this.$session.get('userType') : false,
+        userId:  typeof this.$session.get('userId') !== 'undefined' ? this.$session.get('userId') : false,
       };
     }, 
     components:{
@@ -149,6 +178,8 @@
       this.risks = risksRes.data;
       this.expenses = expensesRes.data;
       this.isLoading = false
+      const messagesRes = await this.axios.get("messages-by-chat/" + this.project.chat._id)
+      this.messages = messagesRes.data;
     },
     methods: {
       isOnTime(dueDate){
@@ -175,6 +206,14 @@
           return "ATRASADO FAZEM " + Math.abs(dateDiff) + " DIAS"
         }
       },
+      async sendMessage(){
+        this.newMessage.chat = this.project.chat._id;
+        this.newMessage.user = this.userId;
+        this.newMessage.date = new Date();
+        let message = await this.axios.post("message", this.newMessage);
+        console.log(message)
+        this.messages.push(message.data)
+      }
     }
   };
 </script>

@@ -9,26 +9,24 @@
     <div class="row pt-3">
       <div v-if="isLoading" class="m-auto"><img src="../../assets/loading.svg" alt="loading" ></div>
       <div
-        class="col-4 bg-gray p-2 m-2"
+        class="col-4 px-1 pb-2"
         v-for="(project, index) of projects"
         :key="index"
       >
-      
-        <h4 class="text-left text-light">{{ project.name }}</h4>
-        <!-- <h6 class="text-left">{{ project.owner.name }}</h6> -->
-        <div class="d-flex pb-2">
-          <a v-for="(external, index) of project.externalSources" :key="index"
-            class=" btn-primary px-4 py-1 mx-1 rounded border border-dark" :href="external.link"
-             target="_blank"
-            >{{external.name}}</a
-          >
-        </div>
-        <div class="d-flex pb-2">
-          <router-link
-            class=" btn-primary px-4 py-1 mx-1 rounded border border-dark"
-            :to="{ path: '/project/' + project._id }"
-            >Ir ao projeto</router-link
-          >
+        <div class="col-12 p-2 bg-white border">
+          <h4 class="text-left text-dark">{{ project.name }}</h4>
+          <h6 class="text-left text-dark mb-0">{{ project.owner.name }}</h6>
+          <div class="d-flex flex-column py-2">            
+            <a v-for="(external, index) of project.externalSources" :key="index"
+              class=" text-yellow" :href="external.link"
+              target="_blank"
+              >{{external.name}}</a>
+            <router-link
+              class=" text-yellow"
+              :to="{ path: '/project/' + project._id }"
+              >Ir ao projeto</router-link
+            >
+          </div>
         </div>
       </div>
     </div>

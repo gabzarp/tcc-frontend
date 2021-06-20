@@ -79,7 +79,8 @@
   }
 
   html, body {
-    color: #2c3e50;
+    height: 100%;
+    background: #FAF9FA !important;
   }
   #app {
     color: #2c3e50;
@@ -102,6 +103,7 @@
     background-color: #7e7e7e !important;
     box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15)!important;
   }
+
   .btn-primary{
     background-color: #e78200 !important;
     border-color: #343a40!important;
@@ -113,14 +115,40 @@
     box-shadow: 0px 3px 6px #00000029 !important;
     border: none !important;
   }
+
+  div .border-yellow{
+    border-color: #e78200!important;
+  }
   .btn-primary:hover {
       color: #fff !important;
       background-color: #a96104 !important;
       border-color: #a96104 !important;
   }
+
+  .btn-info{
+    background-color: transparent !important;
+    border-color: #e78200!important;
+    color: #e78200 !important;
+    font-weight: 700!important;
+    border-radius: 10px !important;
+    padding-top: 14px !important;
+    padding-bottom: 14px !important;  
+  }
+
+  .btn-info:hover {
+      color: #fff !important;
+      background-color: #e78200 !important;
+      border-color: #e78200 !important;
+  }
+
+  .text-yellow {
+      color: #e78200 !important;
+  } 
+
   .text-primary {
       color: #e78200 !important;
   }
+
   div .bg-primary {
       background: #e78200 !important;
       background-color: #e78200 !important;
@@ -136,6 +164,9 @@
   }
   .nav-item{
     font-weight: 700!important;
+  }
+  .d-flex{
+    flex-wrap: wrap !important;
   }
   p{
     font-size:20px !important;
