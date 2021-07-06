@@ -17,11 +17,12 @@
           <h4 class="text-left text-dark">{{ project.name }}</h4>
           <h6 class="text-left text-dark mb-0">{{ project.owner.name }}</h6>
           <div class="d-flex flex-column py-2">            
-            <a v-for="(external, index) of project.externalSources" :key="index"
-              class=" text-yellow" :href="external.link"
-              target="_blank"
-              >{{external.name}}</a>
-            <router-link v-if="user_type != 'company'"
+            <div v-for="(external, index) of project.externalSources" :key="index">
+              <a v-if="user_type != 'company'" class=" text-yellow" :href="external.link" target="_blank">
+                {{external.name}}
+              </a>
+            </div>
+            <router-link
               class=" text-yellow"
               :to="{ path: '/project/' + project._id }"
               >Ir ao projeto</router-link
