@@ -7,9 +7,9 @@
       <div class="col-8 text-dark pt-2">
         <h5>{{memberData.user.name}}</h5>
         <p class="mb-1">{{memberData.position}}</p>
-          <div v-if="!isScrumMaster">Prazo: {{dueDate}}</div>
-          <div v-if="!isScrumMaster">Comunicação: {{communication}}</div>
-          <div v-if="!isScrumMaster">Conhecimento técnico: {{technicalKnowledge}}</div>
+          <div v-if="isScrumMaster">Prazo: {{dueDate}}</div>
+          <div v-if="isScrumMaster">Comunicação: {{communication}}</div>
+          <div v-if="isScrumMaster">Conhecimento técnico: {{technicalKnowledge}}</div>
           <router-link class="text-yellow" v-if="isScrumMaster && memberData.position != 'Scrum master'" :to="{path: `/project/${projectData._id}/member-evaluation/${memberData._id}` }"> 
             Avaliar 
           </router-link>

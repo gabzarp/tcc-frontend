@@ -98,9 +98,9 @@
       return {
         project: {_id: '0'},
         member: { _id: '0'},
-        dueDate: {type: "60ceb8341fb00c0f161a9ef4", score: 0, project: this.$route.params.id, member: this.$route.params.member},
-        technicalKnowledge: {type: "60ceb8411fb00c0f161a9ef5", score: 0, project: this.$route.params.id, member: this.$route.params.member},
-        communication: {type:"60ceb8481fb00c0f161a9ef6", score: 0, project: this.$route.params.id, member: this.$route.params.member},
+        dueDate: {type: "5f8cc48101fca84044fccbe9", score: 0, project: this.$route.params.id, member: this.$route.params.member},
+        technicalKnowledge: {type: "5f8ce43e01fca84044fccbeb", score: 0, project: this.$route.params.id, member: this.$route.params.member},
+        communication: {type:"5f8ce42b01fca84044fccbea", score: 0, project: this.$route.params.id, member: this.$route.params.member},
       };
     },
     methods: {

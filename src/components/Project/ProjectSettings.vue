@@ -114,7 +114,7 @@
       </div>
       <div v-if="!isLoading" class="row pt-3 border-bottom pb-4">
         <div class="col-12 px-0 py-2 text-dark">
-          <h4>Riscos:</h4>
+          <h4 class="font-weight-bold">Riscos:</h4>
           <div class="pb-3">
             <a href="javascript:void(0)" class="text-yellow h5 pb-3" v-on:click="$modal.show('risco')"> Adicionar risco</a>
           </div>
@@ -147,21 +147,20 @@
       </div>
       <div v-if="!isLoading" class="row mt-3">
         <div class="col-12 px-0 py-2 text-dark">
-          <h4>Justificação:</h4>
+          <h4 class="font-weight-bold">Justificação:</h4>
           <input type="text" class="form-control" v-model="project.justification">
         </div>
         <div class="col-12 px-0 py-2 text-dark mt-2">
-          <h4>Finalidade:</h4>
+          <h4 class="font-weight-bold">Finalidade:</h4>
           <input type="text" class="form-control" v-model="project.goal">
         </div>
         <div class="col-12 px-0 py-2 text-dark mt-2">
-          <h4>Objetivos:</h4>
+          <h4 class="font-weight-bold">Objetivos:</h4>
           <input type="text" class="form-control" v-model="project.objectives">
         </div>
       </div>
       </div>
       <div class="col-12 px-0 py-4 d-flex justify-content-end align-items-end">
-        <a class="btn btn-lg btn-primary px-4 py-2 mr-3" @click="finishProject()">Finalizar projeto</a>
         <router-link :to="{path: `/project/${this.$route.params.id}`}" class="btn btn-lg btn-info  py-2 mr-3">Cancelar</router-link>
         <a class="btn btn-lg btn-primary px-4 py-2" @click="save()">Salvar</a>
       </div>
@@ -247,11 +246,6 @@ export default {
       async saveGit(){
         await this.axios.patch("/external-source", this.git);
         this.$router.back();
-      },
-      async finishProject(){
-        this.project.isFinished = true
-        await this.axios.patch("/project", this.project)
-        this.$router.push({ name: 'my-projects' });
       },
       remainingDays(deadLine){
         let dt2 = new Date(deadLine.deadLine)

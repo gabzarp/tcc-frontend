@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="row pb-4 d-flex align-items-center">
-        <div class="col-1 pl-0">
+        <div class="col-1 pl-0" v-if="role == 'Scrum master'">
           <router-link :to="{path: `/project/${this.$route.params.id}/settings`}" class="w-100">
             <img src="../../assets/settings.svg" alt="Configurações do projeto" class="img-fluid w-50">
           </router-link>
@@ -111,7 +111,7 @@
       </div>
       <div v-if="!isLoading" class="row pt-3 border-bottom pb-4">
         <div class="col-12 px-0 py-2 text-dark">
-          <h4>Riscos:</h4>
+          <h4 class="font-weight-bold">Riscos:</h4>
           <div class="col-12 px-0 d-flex" v-if="risks.length > 0">
             <div class="col-3 pl-0 mb-3" v-for="risk in risks" :key="risk._id">
               <div class="col-12 px-3 bg-white border border-muted rounded-lg p-2">
@@ -128,16 +128,19 @@
       </div>
       <div v-if="!isLoading" class="row mt-3">
         <div class="col-12 px-0 py-2 text-dark">
-          <h4>Justificação:</h4>
+          <h4 class="font-weight-bold">Justificação:</h4>
           <p>{{project.justification}}</p>
         </div>
         <div class="col-12 px-0 py-2 text-dark mt-2">
-          <h4>Finalidade:</h4>
+          <h4 class="font-weight-bold">Finalidade:</h4>
           <p>{{project.goal}}</p>
         </div>
         <div class="col-12 px-0 py-2 text-dark mt-2">
-          <h4>Objetivos:</h4>
+          <h4 class="font-weight-bold">Objetivos:</h4>
           <p>{{project.objectives}}</p>
+        </div>
+        <div v-if="user_type == 'company' && project.isFinished == false" class="col-12 px-0 py-4 d-flex justify-content-end align-items-end">
+          <a class="btn btn-lg btn-primary px-4 py-2 mr-3" @click="finishProject()">Finalizar projeto</a>
         </div>
       </div>
       </div>
@@ -180,6 +183,7 @@
       this.isLoading = false
       const messagesRes = await this.axios.get("messages-by-chat/" + this.project.chat._id)
       this.messages = messagesRes.data;
+      
     },
     methods: {
       isOnTime(dueDate){
@@ -213,7 +217,12 @@
         let message = await this.axios.post("message", this.newMessage);
         console.log(message)
         this.messages.push(message.data)
-      }
+      },
+      async finishProject(){
+        this.project.isFinished = true
+        await this.axios.patch("/project", this.project)
+        this.$router.push({ name: 'my-projects' });
+      },
     }
   };
 </script>
