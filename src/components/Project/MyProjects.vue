@@ -21,7 +21,7 @@
               class=" text-yellow" :href="external.link"
               target="_blank"
               >{{external.name}}</a>
-            <router-link v-if="user_type == 'company'"
+            <router-link v-if="user_type != 'company'"
               class=" text-yellow"
               :to="{ path: '/project/' + project._id }"
               >Ir ao projeto</router-link
