@@ -21,7 +21,7 @@
               class=" text-yellow" :href="external.link"
               target="_blank"
               >{{external.name}}</a>
-            <router-link
+            <router-link v-if="user_type == 'company'"
               class=" text-yellow"
               :to="{ path: '/project/' + project._id }"
               >Ir ao projeto</router-link
@@ -39,7 +39,8 @@ export default {
       isLoading: true,
       projects: {},
       showMessage: false,
-      userId: this.$session.get('userId')
+      userId: this.$session.get('userId'),
+      user_type: typeof this.$session.get('userType') !== 'undefined' ? this.$session.get('userType') : false
     };
   },
   async mounted() {

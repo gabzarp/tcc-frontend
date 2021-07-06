@@ -40,7 +40,7 @@
               <a class="btn btn-primary py-1" href="javascript:void(0)" v-on:click="sendMessage()">Enviar</a>
           </div>
         </modal>
-        <div class="col-1">
+        <div v-if="user_type == 'company'" class="col-1">
           <a v-for="(external, index) of project.externalSources" :key="index" class="w-100" :href="external.link" target="_blank">
             <img class="img-fluid w-50" :src="require(`@/assets/${external.name}.svg`)"/>
           </a>
@@ -128,7 +128,7 @@
       </div>
       <div v-if="!isLoading" class="row mt-3">
         <div class="col-12 px-0 py-2 text-dark">
-          <h4 class="font-weight-bold">Justificação:</h4>
+          <h4 class="font-weight-bold">Justificativa:</h4>
           <p>{{project.justification}}</p>
         </div>
         <div class="col-12 px-0 py-2 text-dark mt-2">

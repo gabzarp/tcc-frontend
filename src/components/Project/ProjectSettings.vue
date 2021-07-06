@@ -147,7 +147,7 @@
       </div>
       <div v-if="!isLoading" class="row mt-3">
         <div class="col-12 px-0 py-2 text-dark">
-          <h4 class="font-weight-bold">Justificação:</h4>
+          <h4 class="font-weight-bold">Justificativa:</h4>
           <input type="text" class="form-control" v-model="project.justification">
         </div>
         <div class="col-12 px-0 py-2 text-dark mt-2">
